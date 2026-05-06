@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNK CREATIVE — Estudio de Diseño y Branding</title>
+  <meta name="description" content="Sincronizamos tus ideas con nuestra creatividad. Estudio de diseño y branding especializado en identidad visual y estrategia de marca.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --dark: #0D0D0D;
+      --cream: #F7F4EF;
+      --purple: #7B3FF2;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: rgba(139, 92, 246, 0.38); color: inherit; }
+    ::-moz-selection { background: rgba(139, 92, 246, 0.38); color: inherit; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--cream); overflow-x: hidden; }
+
+    /* ── INTRO ── */
+    #intro { position: fixed; inset: 0; z-index: 1000; pointer-events: none; }
+    .intro-panel {
+      position: absolute; left: 0; right: 0; height: 50%;
+      background: #2D0A4E; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .intro-panel.top { top: 0; }
+    .intro-panel.bottom { bottom: 0; }
+    .intro-logo {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 9rem);
+      font-weight: 300; color: #EDE0CC;
+      letter-spacing: 0.12em; white-space: nowrap; line-height: 1;
+      display: flex; align-items: baseline;
+    }
+    .intro-panel.top .intro-logo { bottom: 0; }
+    .intro-panel.bottom .intro-logo { top: 0; }
+    .intro-logo-creative {
+      font-size: clamp(1.4rem, 4vw, 5rem);
+      letter-spacing: 0.28em;
+    }
+    .intro-letter {
+      display: inline-block;
+      will-change: transform, opacity;
+      opacity: 0;
+    }
+    .creative-letter {
+      display: inline-block;
+      will-change: transform, opacity;
+      opacity: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.5rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      opacity: 0; transform: translateY(-20px);
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+    nav.scrolled { background: rgba(13,13,13,0.92); backdrop-filter: blur(12px); }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.22em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: rgba(247,244,239,0.55); text-decoration: none;
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 500; transition: color 0.3s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      color: var(--cream); text-decoration: none; font-size: 0.68rem;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500;
+      padding: 0.65rem 1.3rem; border: 1px solid rgba(247,244,239,0.2);
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--cream); color: var(--dark); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 0.5rem; z-index: 101; background: none; border: none;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 1.5px;
+      background: var(--cream); transition: all 0.3s; transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      position: fixed; inset: 0; background: var(--dark); z-index: 99;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem; opacity: 0; pointer-events: none; transition: opacity 0.4s;
+    }
+    .mobile-menu.open { opacity: 1; pointer-events: all; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300;
+      color: var(--cream); text-decoration: none; letter-spacing: 0.05em; transition: color 0.3s;
+    }
+    .mobile-menu a:hover { color: var(--purple); }
+
+    /* ── HERO VIDEO ── */
+    #inicio {
+      position: relative; height: 100vh; overflow: hidden;
+    }
+    .hero-video {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0;
+    }
+    .hero-video-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.1) 40%, transparent 100%);
+      pointer-events: none;
+    }
+    .btn-primary {
+      display: inline-block; padding: 0.9rem 1.8rem;
+      background: var(--cream); color: var(--dark); text-decoration: none;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 600; transition: background 0.3s;
+    }
+    .btn-primary:hover { background: rgba(247,244,239,0.85); }
+    .btn-ghost {
+      color: rgba(247,244,239,0.4); text-decoration: none; font-size: 0.7rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem; transition: color 0.3s;
+    }
+    .btn-ghost:hover { color: var(--cream); }
+    .hero-scroll {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0;
+    }
+    .hero-scroll-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(247,244,239,0.2); }
+    .hero-scroll-line {
+      width: 1px; height: 3rem; background: rgba(247,244,239,0.4);
+      animation: scrollPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      51%  { transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ── SHARED ── */
+    section { position: relative; overflow: hidden; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; }
+    .section-pad { padding: 8rem 0; }
+    @media (min-width: 1024px) { .section-pad { padding: 12rem 0; } }
+    .section-label { display: flex; align-items: center; gap: 1rem; margin-bottom: 5rem; }
+    .section-label-line { width: 2.5rem; height: 1px; }
+    .section-label-text { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 5vw, 5.5rem); font-weight: 300; line-height: 1.1;
+    }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--cream); color: var(--dark); }
+    #nosotros .section-label-line { background: rgba(13,13,13,0.3); }
+    #nosotros .section-label-text { color: rgba(13,13,13,0.35); }
+    .nosotros-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 6rem; }
+    @media (min-width: 1024px) { .nosotros-grid { grid-template-columns: 1fr 1fr; gap: 7rem; } }
+    .nosotros-text p { color: rgba(13,13,13,0.65); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    .nosotros-text p:last-child { color: rgba(13,13,13,0.45); }
+    .stats-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; padding-top: 3rem; border-top: 1px solid rgba(13,13,13,0.1); }
+    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4,1fr); } }
+    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,5vw,4.5rem); font-weight: 300; color: var(--dark); line-height: 1; margin-bottom: 0.5rem; }
+    .stat-label { font-size: 0.8rem; color: rgba(13,13,13,0.45); }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: var(--dark); }
+    #servicios .section-label-line { background: rgba(247,244,239,0.3); }
+    #servicios .section-label-text { color: rgba(247,244,239,0.35); }
+    #servicios .section-title { color: var(--cream); margin-bottom: 4rem; max-width: 600px; }
+    .servicios-list { border-top: 1px solid rgba(247,244,239,0.08); }
+    .servicio-item {
+      display: grid; grid-template-columns: 70px 1fr;
+      gap: 2rem; padding: 2.5rem 0;
+      border-bottom: 1px solid rgba(247,244,239,0.08);
+      transition: padding-left 0.45s ease; cursor: default;
+    }
+    @media (min-width: 768px) { .servicio-item { grid-template-columns: 80px 1fr 28px; gap: 3rem; padding: 3rem 0; } }
+    .servicio-item:hover { padding-left: 1rem; }
+    .servicio-num {
+      font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300;
+      color: rgba(247,244,239,0.1); line-height: 1; transition: color 0.4s;
+    }
+    .servicio-item:hover .servicio-num { color: rgba(247,244,239,0.28); }
+    .servicio-body h3 { font-size: 1.15rem; font-weight: 500; color: var(--cream); margin-bottom: 0.6rem; }
+    .servicio-body p { font-size: 0.875rem; color: rgba(247,244,239,0.45); line-height: 1.7; max-width: 520px; }
+    .servicio-arrow { color: rgba(247,244,239,0.2); font-size: 1.4rem; align-self: center; transition: all 0.4s; display: none; }
+    @media (min-width: 768px) { .servicio-arrow { display: block; } }
+    .servicio-item:hover .servicio-arrow { color: rgba(247,244,239,0.55); transform: translateX(6px); }
+
+    /* ── PORTFOLIO ── */
+    #portfolio { background: var(--cream); color: var(--dark); }
+    #portfolio .section-label-line { background: rgba(13,13,13,0.3); }
+    #portfolio .section-label-text { color: rgba(13,13,13,0.35); }
+    .portfolio-header { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3rem; }
+    @media (min-width: 768px) { .portfolio-header { flex-direction: row; align-items: flex-end; justify-content: space-between; } }
+    .portfolio-header .section-title { color: var(--dark); }
+    .portfolio-link {
+      color: rgba(13,13,13,0.45); text-decoration: none; font-size: 0.72rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.4rem; flex-shrink: 0; transition: color 0.3s;
+    }
+    .portfolio-link:hover { color: var(--dark); }
+    .portfolio-grid { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+    @media (min-width: 768px) { .portfolio-grid { grid-template-columns: repeat(3,1fr); } }
+    .p-card { position: relative; overflow: hidden; cursor: pointer; }
+    .p-card.wide { aspect-ratio: 16/9; }
+    .p-card.square { aspect-ratio: 1; }
+    @media (min-width: 768px) { .p-card.wide { grid-column: span 2; } }
+    .p-card-bg { position: absolute; inset: 0; transition: transform 0.7s ease; }
+    .p-card:hover .p-card-bg { transform: scale(1.045); }
+    .p-noise {
+      position: absolute; inset: 0; opacity: 0.15; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .p-overlay { position: absolute; inset: 0; background: rgba(13,13,13,0); transition: background 0.5s; }
+    .p-card:hover .p-overlay { background: rgba(13,13,13,0.55); }
+    .p-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 2rem; }
+    .p-cat { font-size: 0.63rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.38); margin-bottom: 0.4rem; transition: color 0.3s; }
+    .p-card:hover .p-cat { color: rgba(255,255,255,0.65); }
+    .p-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,3vw,2.1rem); font-weight: 300; color: #fff; }
+    .p-btn { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.4s; }
+    .p-card:hover .p-btn { opacity: 1; }
+    .p-btn span { border: 1px solid rgba(255,255,255,0.38); color: #fff; font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; padding: 0.85rem 1.7rem; }
+    .g1 { background: linear-gradient(135deg,#2e1065,#581c87,#701a75); }
+    .g2 { background: linear-gradient(135deg,#4c0519,#9f1239,#7f1d1d); }
+    .g3 { background: linear-gradient(135deg,#451a03,#92400e,#1c1917); }
+    .g4 { background: linear-gradient(135deg,#022c22,#134e4a,#052e16); }
+    .g5 { background: linear-gradient(135deg,#1e293b,#374151,#27272a); }
+    .g6 { background: linear-gradient(135deg,#172554,#312e81,#0c4a6e); }
+
+    /* ── PROCESO ── */
+    #proceso { background: var(--purple); }
+    #proceso .section-label-line { background: rgba(247,244,239,0.3); }
+    #proceso .section-label-text { color: rgba(247,244,239,0.35); }
+    #proceso .section-title { color: var(--cream); margin-bottom: 5rem; max-width: 600px; }
+    .proceso-list { border-top: 1px solid rgba(247,244,239,0.15); }
+    .proceso-item {
+      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
+      padding: 3rem 0; border-bottom: 1px solid rgba(247,244,239,0.1);
+      transition: padding-left 0.5s ease; cursor: default;
+    }
+    @media (min-width: 768px) { .proceso-item { grid-template-columns: 110px 1fr 32px; align-items: center; gap: 2.5rem; } }
+    .proceso-item:hover { padding-left: 1.25rem; }
+    .proceso-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: rgba(247,244,239,0.18); line-height: 1; transition: color 0.5s; }
+    .proceso-item:hover .proceso-num { color: rgba(247,244,239,0.42); }
+    .proceso-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 300; color: var(--cream); margin-bottom: 0.6rem; }
+    .proceso-body p { font-size: 1rem; color: rgba(247,244,239,0.5); line-height: 1.7; max-width: 550px; }
+    .proceso-arrow { color: rgba(247,244,239,0.2); font-size: 1.4rem; justify-self: end; transition: all 0.5s; display: none; }
+    @media (min-width: 768px) { .proceso-arrow { display: block; } }
+    .proceso-item:hover .proceso-arrow { color: rgba(247,244,239,0.55); transform: translateX(6px); }
+
+    /* ── TESTIMONIALES ── */
+    #testimoniales { background: var(--dark); }
+    #testimoniales .section-label-line { background: rgba(247,244,239,0.3); }
+    #testimoniales .section-label-text { color: rgba(247,244,239,0.35); }
+    #testimoniales .section-title { color: var(--cream); margin-bottom: 5rem; max-width: 600px; }
+    .testi-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+    @media (min-width: 768px) { .testi-grid { grid-template-columns: repeat(3,1fr); } }
+    .testi-card { background: rgba(247,244,239,0.04); border: 1px solid rgba(247,244,239,0.08); padding: 2.5rem; transition: background 0.5s; }
+    .testi-card:hover { background: rgba(247,244,239,0.07); }
+    .testi-quote { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: var(--purple); line-height: 1; margin-bottom: 1.25rem; user-select: none; }
+    .testi-text { font-size: 0.95rem; color: rgba(247,244,239,0.65); line-height: 1.75; font-style: italic; margin-bottom: 2rem; }
+    .testi-author { display: flex; align-items: center; gap: 1rem; }
+    .testi-avatar { width: 2.5rem; height: 2.5rem; border-radius: 50%; background: var(--purple); display: flex; align-items: center; justify-content: center; color: var(--cream); font-size: 0.875rem; font-weight: 600; flex-shrink: 0; }
+    .testi-name { font-size: 0.875rem; font-weight: 500; color: var(--cream); }
+    .testi-role { font-size: 0.75rem; color: rgba(247,244,239,0.35); margin-top: 0.15rem; }
+
+    /* ── CONTACTO ── */
+    #contacto { background: var(--cream); color: var(--dark); }
+    #contacto .section-label-line { background: rgba(13,13,13,0.3); }
+    #contacto .section-label-text { color: rgba(13,13,13,0.35); }
+    .contacto-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
+    @media (min-width: 1024px) { .contacto-grid { grid-template-columns: 1fr 1fr; gap: 7rem; } }
+    .contacto-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem,9vw,9rem); font-weight: 300; color: var(--dark); line-height: 1; margin-bottom: 1.5rem; }
+    .contacto-intro { font-size: 1.05rem; color: rgba(13,13,13,0.55); line-height: 1.75; margin-bottom: 3rem; }
+    .contacto-info { display: flex; flex-direction: column; gap: 1.5rem; }
+    .ci-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(13,13,13,0.35); margin-bottom: 0.25rem; }
+    .ci-value { font-size: 1.05rem; color: var(--dark); text-decoration: none; transition: color 0.3s; display: block; }
+    a.ci-value:hover { color: var(--purple); }
+    .contact-form { display: flex; flex-direction: column; gap: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr; gap: 2rem; }
+    @media (min-width: 480px) { .form-row { grid-template-columns: 1fr 1fr; } }
+    .form-group { display: flex; flex-direction: column; }
+    .form-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(13,13,13,0.35); margin-bottom: 0.75rem; }
+    .form-input, .form-textarea {
+      background: transparent; border: none; border-bottom: 1px solid rgba(13,13,13,0.2);
+      padding: 1rem 0; font-family: 'Inter', sans-serif; font-size: 1rem;
+      color: var(--dark); outline: none; transition: border-color 0.3s; resize: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(13,13,13,0.3); }
+    .form-input:focus, .form-textarea:focus { border-bottom-color: rgba(13,13,13,0.6); }
+    .btn-submit {
+      width: 100%; padding: 1rem; background: var(--dark); color: var(--cream);
+      border: none; font-family: 'Inter', sans-serif; font-size: 0.7rem;
+      letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500;
+      cursor: pointer; transition: background 0.3s;
+    }
+    .btn-submit:hover { background: var(--purple); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--dark); border-top: 1px solid rgba(247,244,239,0.06); padding: 5rem 0 3rem; }
+    .footer-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; margin-bottom: 4rem; }
+    @media (min-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 4rem; } }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--cream); letter-spacing: 0.2em; margin-bottom: 1.25rem; }
+    .footer-tagline { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: rgba(247,244,239,0.35); font-style: italic; line-height: 1.6; }
+    .footer-col-title { font-size: 0.63rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(247,244,239,0.25); margin-bottom: 1.5rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-links a { font-size: 0.9rem; color: rgba(247,244,239,0.5); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+    .footer-links a:hover { color: var(--cream); }
+    .soc-arrow { font-size: 0.7rem; opacity: 0; transition: opacity 0.3s; }
+    .footer-links a:hover .soc-arrow { opacity: 1; }
+    .footer-bottom { padding-top: 2rem; border-top: 1px solid rgba(247,244,239,0.06); display: flex; flex-direction: column; gap: 1rem; }
+    @media (min-width: 640px) { .footer-bottom { flex-direction: row; align-items: center; justify-content: space-between; } }
+    .footer-copy { font-size: 0.72rem; color: rgba(247,244,239,0.2); }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { font-size: 0.72rem; color: rgba(247,244,239,0.2); text-decoration: none; transition: color 0.3s; }
+    .footer-legal a:hover { color: rgba(247,244,239,0.45); }
+
+    /* ── REEL / MARQUEE ── */
+    #reel {
+      background: var(--dark);
+      height: 90vh;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .reel-header {
+      position: absolute; top: 2.5rem; left: 0; right: 0; z-index: 10;
+      max-width: 1400px; margin: 0 auto;
+      padding: 0 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .reel-label { display: flex; align-items: center; gap: 1rem; }
+    .reel-label-line { width: 2.5rem; height: 1px; background: rgba(247,244,239,0.3); }
+    .reel-label-text { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(247,244,239,0.35); }
+    .reel-view-all {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: rgba(247,244,239,0.3); text-decoration: none;
+      display: flex; align-items: center; gap: 0.4rem; transition: color 0.3s;
+    }
+    .reel-view-all:hover { color: rgba(247,244,239,0.7); }
+
+    /* Diagonal wrapper — rotates the whole strip for the angled trajectory */
+    .reel-diagonal-wrap {
+      width: calc(100% + 400px);
+      margin-left: -200px;
+      flex-shrink: 0;
+      transform: rotate(-6deg);
+    }
+
+    /* Perspective container — creates the "leaning back" 3D depth */
+    .reel-track-wrap {
+      overflow: hidden;
+      perspective: 900px;
+      perspective-origin: 50% 15%;
+    }
+
+    .reel-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      will-change: transform;
+      transform: rotateX(14deg);
+      transform-style: preserve-3d;
+    }
+
+    .reel-card {
+      flex-shrink: 0;
+      width: clamp(260px, 25vw, 400px);
+      height: 74vh;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.6s;
+    }
+    .reel-card:hover {
+      transform: scale(1.03) translateY(-12px) rotateX(-4deg);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.7);
+      z-index: 2;
+    }
+    .reel-card-bg { position: absolute; inset: 0; transition: transform 0.75s ease; }
+    .reel-card:hover .reel-card-bg { transform: scale(1.07); }
+    .reel-noise {
+      position: absolute; inset: 0; opacity: 0.12; mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+    }
+    .reel-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(13,13,13,0.9) 0%, rgba(13,13,13,0.25) 50%, rgba(13,13,13,0.05) 100%);
+    }
+    .reel-card-content {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 2rem 2.25rem;
+    }
+    .reel-card-cat {
+      font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(255,255,255,0.4); margin-bottom: 0.5rem; display: block;
+    }
+    .reel-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.2vw, 2.1rem); font-weight: 300;
+      color: #fff; line-height: 1.15;
+    }
+    .reel-card-arrow {
+      position: absolute; top: 1.4rem; right: 1.4rem;
+      width: 2.4rem; height: 2.4rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); font-size: 0.9rem;
+      opacity: 0; transform: translateY(-6px);
+      transition: opacity 0.4s, transform 0.4s, border-color 0.4s;
+    }
+    .reel-card:hover .reel-card-arrow {
+      opacity: 1; transform: translateY(0);
+      border-color: rgba(255,255,255,0.35); color: #fff;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1.25rem 1.5rem; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .container { padding: 0 1.5rem; }
+      .hero-inner { padding: 0 1.5rem; }
+      .hero-year { font-size: 7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="intro-panel top">
+    <div class="intro-logo">
+      <span class="intro-letter">S</span><span class="intro-letter">Y</span><span class="intro-letter">N</span><span class="intro-letter">K</span>
+    </div>
+  </div>
+  <div class="intro-panel bottom">
+    <div class="intro-logo intro-logo-creative">
+      <span class="creative-letter">C</span><span class="creative-letter">R</span><span class="creative-letter">E</span><span class="creative-letter">A</span><span class="creative-letter">T</span><span class="creative-letter">I</span><span class="creative-letter">V</span><span class="creative-letter">E</span>
+    </div>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a>
+  <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+  <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
+  <a href="#proceso" onclick="closeMobileMenu()">Proceso</a>
+  <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#inicio" class="nav-logo">SYNK</a>
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Trabajemos juntos</a>
+  <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="inicio">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="Medios/Videos/Principal.mp4" type="video/mp4">
+  </video>
+  <div class="hero-video-overlay"></div>
+  <div class="hero-scroll" id="heroScroll">
+    <span class="hero-scroll-label">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- REEL -->
+<section id="reel">
+  <div class="reel-header">
+    <div class="reel-label">
+      <span class="reel-label-line"></span>
+      <span class="reel-label-text">Proyectos Seleccionados</span>
+    </div>
+    <a href="#portfolio" class="reel-view-all">Ver portfolio <span>→</span></a>
+  </div>
+  <div class="reel-diagonal-wrap">
+  <div class="reel-track-wrap">
+    <div class="reel-track" id="reelTrack">
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/UFC.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Branding &amp; Identidad</span><h3 class="reel-card-title">Marca Flora</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/Fotog.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Diseño Gráfico</span><h3 class="reel-card-title">Identidad Pulso</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/Setu.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Sistema Áureo</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg g4"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Estrategia de Marca</span><h3 class="reel-card-title">Branding Bosque</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg g5"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Diseño Web</span><h3 class="reel-card-title">Campaña Nómade</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg g6"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Fotografía de Marca</span><h3 class="reel-card-title">Marca Océano</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg" style="background:linear-gradient(135deg,#1a0533,#4a1a7a,#2d0a5e)"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Branding</span><h3 class="reel-card-title">Forma Colectiva</h3></div>
+      </a>
+      <a href="#inicio" class="reel-card">
+        <div class="reel-card-bg" style="background:linear-gradient(135deg,#0a2a1a,#1a5c3a,#0d3d26)"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Cosmos Studio</h3></div>
+      </a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Sobre Nosotros</span>
+    </div>
+    <div class="nosotros-grid">
+      <div>
+        <h2 class="section-title" style="color:var(--dark)">Somos un estudio que piensa diferente.</h2>
+      </div>
+      <div class="nosotros-text">
+        <p>En SYNK CREATIVE, creemos que el diseño va más allá de lo estético. Cada proyecto es una oportunidad de transformar ideas en experiencias que conectan profundamente con las personas.</p>
+        <p>Nuestro enfoque combina estrategia, creatividad y precisión técnica para crear marcas que no solo se ven bien, sino que generan resultados reales y duraderos.</p>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div><div class="stat-number">8+</div><div class="stat-label">Años de experiencia</div></div>
+      <div><div class="stat-number">200+</div><div class="stat-label">Proyectos completados</div></div>
+      <div><div class="stat-number">50+</div><div class="stat-label">Clientes satisfechos</div></div>
+      <div><div class="stat-number">15</div><div class="stat-label">Premios de diseño</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Servicios</span>
+    </div>
+    <h2 class="section-title" style="color:var(--cream);margin-bottom:4rem">Lo que hacemos mejor.</h2>
+    <div class="servicios-list">
+      <div class="servicio-item">
+        <span class="servicio-num">01</span>
+        <div class="servicio-body">
+          <h3>Branding &amp; Identidad Visual</h3>
+          <p>Creamos marcas que trascienden. Desde el logo hasta el sistema visual completo, construimos identidades que definen y diferencian.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+      <div class="servicio-item">
+        <span class="servicio-num">02</span>
+        <div class="servicio-body">
+          <h3>Diseño Gráfico</h3>
+          <p>Piezas gráficas que comunican con precisión y belleza. Editorial, packaging, señalética y mucho más.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+      <div class="servicio-item">
+        <span class="servicio-num">03</span>
+        <div class="servicio-body">
+          <h3>Estrategia de Marca</h3>
+          <p>Antes de diseñar, pensamos. Desarrollamos el posicionamiento, valores y voz de tu marca para garantizar coherencia total.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+      <div class="servicio-item">
+        <span class="servicio-num">04</span>
+        <div class="servicio-body">
+          <h3>Diseño Web &amp; Digital</h3>
+          <p>Experiencias digitales memorables. Webs que no solo se ven impresionantes, sino que convierten y retienen.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+      <div class="servicio-item">
+        <span class="servicio-num">05</span>
+        <div class="servicio-body">
+          <h3>Fotografía de Marca</h3>
+          <p>Imágenes que cuentan tu historia. Dirección de arte y fotografía comercial alineada con tu identidad.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+      <div class="servicio-item">
+        <span class="servicio-num">06</span>
+        <div class="servicio-body">
+          <h3>Consultoría Creativa</h3>
+          <p>Tu marca ya existe. La hacemos brillar. Auditoría, rediseño y evolución de identidades establecidas.</p>
+        </div>
+        <span class="servicio-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Portfolio</span>
+    </div>
+    <div class="portfolio-header">
+      <h2 class="section-title">Trabajo que habla por sí solo.</h2>
+      <a href="#contacto" class="portfolio-link">Ver todo <span>→</span></a>
+    </div>
+    <div class="portfolio-grid">
+      <div class="p-card wide">
+        <div class="p-card-bg g1"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Branding &amp; Identidad</p><h3 class="p-title">Marca Flora</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+      <div class="p-card square">
+        <div class="p-card-bg g2"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Diseño Gráfico</p><h3 class="p-title">Identidad Pulso</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+      <div class="p-card square">
+        <div class="p-card-bg g3"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Identidad Visual</p><h3 class="p-title">Sistema Áureo</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+      <div class="p-card square">
+        <div class="p-card-bg g4"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Estrategia de Marca</p><h3 class="p-title">Branding Bosque</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+      <div class="p-card wide">
+        <div class="p-card-bg g5"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Diseño Web</p><h3 class="p-title">Campaña Nómade</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+      <div class="p-card square">
+        <div class="p-card-bg g6"></div><div class="p-noise"></div><div class="p-overlay"></div>
+        <div class="p-info"><p class="p-cat">Fotografía de Marca</p><h3 class="p-title">Marca Océano</h3></div>
+        <div class="p-btn"><span>Ver Proyecto</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESO -->
+<section id="proceso" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Nuestro Proceso</span>
+    </div>
+    <h2 class="section-title" style="color:var(--cream);margin-bottom:5rem">Así es como trabajamos.</h2>
+    <div class="proceso-list">
+      <div class="proceso-item">
+        <span class="proceso-num">01</span>
+        <div class="proceso-body"><h3>Descubrimiento</h3><p>Nos sumergimos en tu mundo. Entendemos tu negocio, audiencia, competencia y objetivos para sentar las bases de una estrategia sólida.</p></div>
+        <span class="proceso-arrow">→</span>
+      </div>
+      <div class="proceso-item">
+        <span class="proceso-num">02</span>
+        <div class="proceso-body"><h3>Estrategia</h3><p>Trazamos el camino. Definimos el posicionamiento, los atributos de marca y la dirección creativa que guiará todo el proceso.</p></div>
+        <span class="proceso-arrow">→</span>
+      </div>
+      <div class="proceso-item">
+        <span class="proceso-num">03</span>
+        <div class="proceso-body"><h3>Creación</h3><p>Donde la magia sucede. Diseñamos, iteramos y refinamos hasta alcanzar una solución que supere tus expectativas.</p></div>
+        <span class="proceso-arrow">→</span>
+      </div>
+      <div class="proceso-item">
+        <span class="proceso-num">04</span>
+        <div class="proceso-body"><h3>Entrega &amp; Evolución</h3><p>Implementamos, lanzamos y no desaparecemos. Acompañamos la evolución de tu marca a largo plazo.</p></div>
+        <span class="proceso-arrow">→</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALES -->
+<section id="testimoniales" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Testimoniales</span>
+    </div>
+    <h2 class="section-title" style="color:var(--cream);margin-bottom:5rem">Lo que dicen nuestros clientes.</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">SYNK CREATIVE transformó completamente la percepción de nuestra marca. El proceso fue impecable y el resultado superó todas nuestras expectativas.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div><div class="testi-name">María García</div><div class="testi-role">Fundadora, Bloom Studio</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">El equipo entendió perfectamente nuestra visión desde el primer día. Entregaron una identidad visual que realmente nos representa y nos diferencia.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div><div class="testi-name">Carlos Rodríguez</div><div class="testi-role">CEO, Nexo Digital</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Trabajo excepcional. No solo diseñaron nuestra marca, nos dieron una estrategia completa que ha impactado directamente en nuestro crecimiento.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><div class="testi-name">Ana Martínez</div><div class="testi-role">Directora de Arte, Forma Estudio</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto" class="section-pad">
+  <div class="container">
+    <div class="section-label">
+      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
+      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Contacto</span>
+    </div>
+    <div class="contacto-grid">
+      <div>
+        <h2 class="contacto-title">Hablemos.</h2>
+        <p class="contacto-intro">¿Tienes un proyecto en mente? Cuéntanos sobre él. Nos encanta conocer nuevas ideas y explorar cómo podemos ayudarte a hacerlas realidad.</p>
+        <div class="contacto-info">
+          <div><p class="ci-label">Email</p><a href="mailto:hola@synkcreative.com" class="ci-value">hola@synkcreative.com</a></div>
+          <div><p class="ci-label">Teléfono</p><a href="tel:+34600000000" class="ci-value">+34 600 000 000</a></div>
+          <div><p class="ci-label">Ubicación</p><span class="ci-value">Madrid, España</span></div>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group"><label class="form-label">Nombre *</label><input type="text" class="form-input" placeholder="Tu nombre" required></div>
+            <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" placeholder="tu@email.com" required></div>
+          </div>
+          <div class="form-group"><label class="form-label">Empresa</label><input type="text" class="form-input" placeholder="Nombre de tu empresa (opcional)"></div>
+          <div class="form-group"><label class="form-label">Mensaje *</label><textarea class="form-textarea" rows="5" placeholder="Cuéntanos sobre tu proyecto..." required></textarea></div>
+          <button type="submit" class="btn-submit">Enviar Mensaje</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">SYNK</div>
+        <p class="footer-tagline">sincronizamos tus ideas con nuestra creatividad.</p>
+      </div>
+      <div>
+        <p class="footer-col-title">Navegación</p>
+        <ul class="footer-links">
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">Redes Sociales</p>
+        <ul class="footer-links">
+          <li><a href="#">Instagram <span class="soc-arrow">↗</span></a></li>
+          <li><a href="#">Behance <span class="soc-arrow">↗</span></a></li>
+          <li><a href="#">LinkedIn <span class="soc-arrow">↗</span></a></li>
+          <li><a href="#">Pinterest <span class="soc-arrow">↗</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 SYNK CREATIVE. Todos los derechos reservados.</p>
+      <div class="footer-legal"><a href="#">Privacidad</a><a href="#">Legal</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* ─── INTRO ─────────────────────────────────────────── */
+  document.body.style.overflow = 'hidden';
+
+  const introTop    = document.querySelector('.intro-panel.top');
+  const introBottom = document.querySelector('.intro-panel.bottom');
+  const navbar      = document.getElementById('navbar');
+  const topLetters     = document.querySelectorAll('.intro-panel.top .intro-letter');
+  const creativeLetters = document.querySelectorAll('.intro-panel.bottom .creative-letter');
+
+  // Viewport-relative start positions — each letter enters from a different direction
+  // S ← left | Y ↑ top | N ↓ bottom | K → right
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const letterStarts = [
+    { x: -vw * 0.75, y: -vh * 0.08, rotation: -18, scale: 0.3, opacity: 0 }, // S
+    { x: -vw * 0.06, y: -vh * 0.85, rotation:  22, scale: 0.3, opacity: 0 }, // Y
+    { x:  vw * 0.06, y:  vh * 0.85, rotation: -22, scale: 0.3, opacity: 0 }, // N
+    { x:  vw * 0.75, y:  vh * 0.08, rotation:  18, scale: 0.3, opacity: 0 }, // K
+  ];
+
+  // Apply initial state to SYNK letters only (top panel)
+  letterStarts.forEach((start, i) => {
+    gsap.set(topLetters[i], start);
+  });
+
+  // CREATIVE letters: start below their position, will wave up
+  gsap.set(creativeLetters, { y: 55, opacity: 0 });
+
+  // Main intro timeline
+  const introTL = gsap.timeline({
+    delay: 0.15,
+    onComplete() {
+      document.getElementById('intro').style.display = 'none';
+      document.body.style.overflow = '';
+      heroEntrance();
+    }
+  });
+
+  // SYNK: each letter converges from its direction, staggered 110ms — top panel only
+  letterStarts.forEach((_, i) => {
+    introTL.to(
+      topLetters[i],
+      { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1, duration: 1.2, ease: 'expo.out' },
+      i * 0.11
+    );
+  });
+
+  // CREATIVE: ola de izquierda a derecha — starts same time as SYNK first letter
+  introTL.to(
+    creativeLetters,
+    { y: 0, opacity: 1, duration: 0.65, stagger: 0.07, ease: 'power3.out' },
+    0.1
+  );
+
+  // After all land: hold → flash on both words → split
+  introTL
+    .to([...topLetters, ...creativeLetters], { opacity: 0.45, duration: 0.16, ease: 'power2.in'  }, '+=0.42')
+    .to([...topLetters, ...creativeLetters], { opacity: 1,    duration: 0.28, ease: 'power2.out' })
+    .to({}, { duration: 0.08 })
+    .to(introTop,    { yPercent: -100, duration: 0.95, ease: 'power3.inOut' }, 'split')
+    .to(introBottom, { yPercent:  100, duration: 0.95, ease: 'power3.inOut' }, 'split');
+
+  /* ─── HERO ENTRANCE ─────────────────────────────────── */
+  function heroEntrance() {
+    gsap.timeline()
+      .to(navbar,         { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' })
+      .to('.hero-video',  { opacity: 1,       duration: 1.4,  ease: 'power2.out' }, '-=0.3')
+      .to('#heroScroll',  { opacity: 1,       duration: 0.5  }, '-=0.5');
+  }
+
+  /* ─── NAV SCROLL ──────────────────────────────────── */
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 80);
+  });
+
+  /* ─── HAMBURGER ───────────────────────────────────── */
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  /* ─── SCROLL ANIMATIONS ───────────────────────────── */
+  const scrollCfg = { start: 'top 88%', toggleActions: 'play none none none' };
+
+  // Generic fade-up: section-label, nosotros grid children, titles, stats, portfolio header, testi section title, contacto left col, form
+  const fadeUpSelectors = [
+    '.section-label',
+    '.nosotros-grid > div',
+    '#nosotros .section-title',
+    '#servicios .section-title',
+    '#portfolio .section-title',
+    '.portfolio-link',
+    '#proceso .section-title',
+    '#testimoniales .section-title',
+    '.contacto-title',
+    '.contacto-intro',
+    '.contacto-info',
+    '#contacto .contacto-grid > div:last-child',
+  ];
+
+  fadeUpSelectors.forEach(sel => {
+    gsap.utils.toArray(sel).forEach(el => {
+      gsap.from(el, { y: 45, opacity: 0, duration: 0.85, ease: 'power2.out', scrollTrigger: { trigger: el, ...scrollCfg } });
+    });
+  });
+
+  // Stats stagger
+  gsap.from('.stats-grid > div', {
+    y: 30, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.stats-grid', ...scrollCfg }
+  });
+
+  // Services rows — staggered from left
+  gsap.from('.servicio-item', {
+    x: -40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.servicios-list', start: 'top 85%', toggleActions: 'play none none none' }
+  });
+
+  // Portfolio cards stagger
+  gsap.from('.p-card', {
+    y: 40, opacity: 0, duration: 0.75, stagger: 0.1, ease: 'power2.out',
+    scrollTrigger: { trigger: '.portfolio-grid', start: 'top 85%', toggleActions: 'play none none none' }
+  });
+
+  // Process rows from left
+  gsap.from('.proceso-item', {
+    x: -40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
+    scrollTrigger: { trigger: '.proceso-list', start: 'top 85%', toggleActions: 'play none none none' }
+  });
+
+  // Testimonial cards stagger
+  gsap.from('.testi-card', {
+    y: 35, opacity: 0, duration: 0.75, stagger: 0.13, ease: 'power2.out',
+    scrollTrigger: { trigger: '.testi-grid', ...scrollCfg }
+  });
+
+  /* ─── REEL INFINITE MARQUEE ──────────────────────────── */
+  (function initReel() {
+    const track = document.getElementById('reelTrack');
+    if (!track) return;
+
+    const origCards = Array.from(track.children);
+    // Clone all cards for seamless loop
+    origCards.forEach(c => track.appendChild(c.cloneNode(true)));
+
+    // Wait a frame so layout is calculated after clone
+    requestAnimationFrame(() => {
+      const gap = 24; // matches 1.5rem gap
+      const totalW = origCards.reduce((sum, c) => sum + c.offsetWidth + gap, 0);
+
+      const tween = gsap.to(track, {
+        x: -totalW,
+        duration: 42,
+        ease: 'none',
+        repeat: -1,
+      });
+
+      // Movement continues on hover — cards remain interactive while in motion
+    });
+  })();
+</script>
+</body>
+</html>
