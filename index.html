@@ -7,7 +7,7 @@
   <meta name="description" content="Sincronizamos tus ideas con nuestra creatividad. Estudio de diseño y branding especializado en identidad visual y estrategia de marca.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
@@ -120,8 +120,45 @@
     }
     .hero-video-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(13,13,13,0.55) 0%, rgba(13,13,13,0.1) 40%, transparent 100%);
+      background:
+        linear-gradient(to bottom, rgba(13,13,13,0.35) 0%, transparent 20%),
+        linear-gradient(to top,    rgba(13,13,13,0.6)  0%, transparent 35%);
+      pointer-events: none; z-index: 2;
+    }
+
+    /* ── HERO TEXT OVERLAY ── */
+    .hero-tagline-overlay {
+      position: absolute; inset: 0; z-index: 3;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(1.5rem, 5vw, 7rem);
       pointer-events: none;
+      gap: clamp(-0.8rem, -1.5vw, -2rem);
+    }
+    .hero-text-line {
+      display: flex; align-items: baseline; flex-wrap: wrap;
+      gap: clamp(0.4rem, 1.2vw, 1.8rem);
+      opacity: 0; transform: translateY(50px);
+    }
+    .ht-sm {
+      font-family: 'Barlow Condensed', 'Inter', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 5rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.03em; line-height: 0.9;
+      color: rgba(255,255,255,0.78);
+      mix-blend-mode: overlay;
+      align-self: center;
+    }
+    .ht-lg {
+      font-family: 'Barlow Condensed', 'Inter', sans-serif;
+      font-size: clamp(4rem, 13vw, 16rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: -0.02em; line-height: 0.82;
+      color: rgba(255,255,255,0.92);
+      mix-blend-mode: overlay;
+    }
+    @media (max-width: 480px) {
+      .ht-sm { font-size: clamp(1.2rem, 6vw, 2.2rem); }
+      .ht-lg { font-size: clamp(3rem, 18vw, 6rem); }
     }
     .btn-primary {
       display: inline-block; padding: 0.9rem 1.8rem;
@@ -489,10 +526,20 @@
 
 <!-- HERO -->
 <section id="inicio">
-  <video class="hero-video" autoplay muted loop playsinline>
-    <source src="Medios/Videos/Principal.mp4" type="video/mp4">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+    <source src="Medios/Videos/vid%20pri.mp4" type="video/mp4">
   </video>
   <div class="hero-video-overlay"></div>
+  <div class="hero-tagline-overlay">
+    <div class="hero-text-line">
+      <span class="ht-sm">SINCRONIZAMOS</span>
+      <span class="ht-lg">TUS IDEAS</span>
+    </div>
+    <div class="hero-text-line">
+      <span class="ht-sm">CON NUESTRA</span>
+      <span class="ht-lg">CREATIVIDAD</span>
+    </div>
+  </div>
   <div class="hero-scroll" id="heroScroll">
     <span class="hero-scroll-label">Scroll</span>
     <div class="hero-scroll-line"></div>
@@ -892,10 +939,20 @@
 
   /* ─── HERO ENTRANCE ─────────────────────────────────── */
   function heroEntrance() {
+    // Autoplay fallback for iOS/Android that block autoplay
+    const vid = document.getElementById('heroVideo');
+    const tryPlay = () => vid.play().catch(() => {});
+    tryPlay();
+    ['touchstart','pointerdown','click'].forEach(e =>
+      document.addEventListener(e, tryPlay, { once: true })
+    );
+
+    gsap.set('.hero-text-line', { opacity: 0, y: 50 });
     gsap.timeline()
-      .to(navbar,         { opacity: 1, y: 0, duration: 0.65, ease: 'power2.out' })
-      .to('.hero-video',  { opacity: 1,       duration: 1.4,  ease: 'power2.out' }, '-=0.3')
-      .to('#heroScroll',  { opacity: 1,       duration: 0.5  }, '-=0.5');
+      .to(navbar,            { opacity: 1, y: 0,  duration: 0.65, ease: 'power2.out' })
+      .to('.hero-video',     { opacity: 1,        duration: 1.4,  ease: 'power2.out' }, '-=0.3')
+      .to('.hero-text-line', { opacity: 1, y: 0,  duration: 1.0,  stagger: 0.18, ease: 'power3.out' }, '-=0.8')
+      .to('#heroScroll',     { opacity: 1,        duration: 0.5  }, '-=0.4');
   }
 
   /* ─── NAV SCROLL ──────────────────────────────────── */
