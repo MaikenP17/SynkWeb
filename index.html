@@ -35,15 +35,15 @@
       position: absolute; left: 50%; transform: translateX(-50%);
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.5rem, 8vw, 9rem);
-      font-weight: 300; color: #EDE0CC;
+      font-weight: 300; color: #ffffff;
       letter-spacing: 0.12em; white-space: nowrap; line-height: 1;
       display: flex; align-items: baseline;
     }
     .intro-panel.top .intro-logo { bottom: 0; }
     .intro-panel.bottom .intro-logo { top: 0; }
     .intro-logo-creative {
-      font-size: clamp(1.4rem, 4vw, 5rem);
-      letter-spacing: 0.28em;
+      font-size: clamp(0.9rem, 2.5vw, 3rem);
+      letter-spacing: 0.35em;
     }
     .intro-letter {
       display: inline-block;
@@ -121,44 +121,71 @@
     .hero-video-overlay {
       position: absolute; inset: 0;
       background:
-        linear-gradient(to bottom, rgba(13,13,13,0.35) 0%, transparent 20%),
-        linear-gradient(to top,    rgba(13,13,13,0.6)  0%, transparent 35%);
+        linear-gradient(to bottom, rgba(13,13,13,0.2) 0%, transparent 20%),
+        linear-gradient(to top,    rgba(13,13,13,0.35) 0%, transparent 40%);
       pointer-events: none; z-index: 2;
     }
 
     /* ── HERO TEXT OVERLAY ── */
     .hero-tagline-overlay {
       position: absolute; inset: 0; z-index: 3;
-      display: flex; flex-direction: column; justify-content: center;
-      padding: clamp(1.5rem, 5vw, 7rem);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      padding: clamp(1.5rem, 4.5vw, 6rem);
+      padding-bottom: clamp(5rem, 11vh, 9rem);
       pointer-events: none;
-      gap: clamp(-0.8rem, -1.5vw, -2rem);
+      gap: clamp(1.2rem, 3vw, 4rem);
+      /* blend at container level so it composites against the video */
+      mix-blend-mode: difference;
     }
     .hero-text-line {
-      display: flex; align-items: baseline; flex-wrap: wrap;
-      gap: clamp(0.4rem, 1.2vw, 1.8rem);
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 0.05em;
       opacity: 0; transform: translateY(50px);
     }
     .ht-sm {
       font-family: 'Barlow Condensed', 'Inter', sans-serif;
-      font-size: clamp(1.5rem, 4vw, 5rem);
+      font-size: clamp(1rem, 2.8vw, 4rem);
       font-weight: 900; text-transform: uppercase;
-      letter-spacing: 0.03em; line-height: 0.9;
-      color: rgba(255,255,255,0.78);
-      mix-blend-mode: overlay;
-      align-self: center;
+      letter-spacing: 0.12em; line-height: 1;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
     }
     .ht-lg {
       font-family: 'Barlow Condensed', 'Inter', sans-serif;
-      font-size: clamp(4rem, 13vw, 16rem);
+      font-size: clamp(4rem, 12vw, 16rem);
       font-weight: 900; text-transform: uppercase;
-      letter-spacing: -0.02em; line-height: 0.82;
-      color: rgba(255,255,255,0.92);
-      mix-blend-mode: overlay;
+      letter-spacing: -0.03em; line-height: 0.86;
+      color: rgba(255,255,255,0.88);
+      -webkit-text-fill-color: rgba(255,255,255,0.88);
+      -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+      white-space: nowrap;
     }
+    /* Large tablet / laptop */
+    @media (max-width: 1024px) {
+      .ht-sm { font-size: clamp(0.9rem, 4vw, 2rem); }
+      .ht-lg { font-size: clamp(3.2rem, 14vw, 10rem); }
+    }
+    /* Tablet */
+    @media (max-width: 768px) {
+      .hero-tagline-overlay {
+        padding: clamp(1.2rem, 4vw, 2.5rem);
+        padding-bottom: 5.5rem;
+        gap: 1.6rem;
+      }
+      .ht-sm { font-size: clamp(0.85rem, 5.5vw, 2rem); }
+      .ht-lg { font-size: clamp(3rem, 18vw, 8rem); }
+    }
+    /* Mobile */
     @media (max-width: 480px) {
-      .ht-sm { font-size: clamp(1.2rem, 6vw, 2.2rem); }
-      .ht-lg { font-size: clamp(3rem, 18vw, 6rem); }
+      .hero-tagline-overlay {
+        padding: 1.2rem;
+        padding-bottom: 4.5rem;
+        gap: 1.2rem;
+      }
+      .ht-sm { font-size: clamp(0.85rem, 6.5vw, 1.8rem); }
+      .ht-lg { font-size: clamp(3rem, 21vw, 6.5rem); }
     }
     .btn-primary {
       display: inline-block; padding: 0.9rem 1.8rem;
@@ -574,29 +601,14 @@
         <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Sistema Áureo</h3></div>
       </a>
       <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg g4"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/paula.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Estrategia de Marca</span><h3 class="reel-card-title">Branding Bosque</h3></div>
+        <div class="reel-card-content"><span class="reel-card-cat">Fotografía de Marca</span><h3 class="reel-card-title">Paula Studio</h3></div>
       </a>
       <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg g5"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/burger.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Diseño Web</span><h3 class="reel-card-title">Campaña Nómade</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg g6"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Fotografía de Marca</span><h3 class="reel-card-title">Marca Océano</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background:linear-gradient(135deg,#1a0533,#4a1a7a,#2d0a5e)"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Branding</span><h3 class="reel-card-title">Forma Colectiva</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background:linear-gradient(135deg,#0a2a1a,#1a5c3a,#0d3d26)"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Cosmos Studio</h3></div>
+        <div class="reel-card-content"><span class="reel-card-cat">Diseño Web</span><h3 class="reel-card-title">Burger Brand</h3></div>
       </a>
     </div>
   </div>
@@ -612,18 +624,12 @@
     </div>
     <div class="nosotros-grid">
       <div>
-        <h2 class="section-title" style="color:var(--dark)">Somos un estudio que piensa diferente.</h2>
+        <h2 class="section-title" style="color:var(--dark)">Cada proyecto empieza con una conversación honesta.</h2>
       </div>
       <div class="nosotros-text">
-        <p>En SYNK CREATIVE, creemos que el diseño va más allá de lo estético. Cada proyecto es una oportunidad de transformar ideas en experiencias que conectan profundamente con las personas.</p>
-        <p>Nuestro enfoque combina estrategia, creatividad y precisión técnica para crear marcas que no solo se ven bien, sino que generan resultados reales y duraderos.</p>
+        <p>¿Qué no está funcionando? ¿Por qué tu competencia te está ganando? ¿Qué necesita tu marca para que la gente no la olvide? Desde ahí construimos — sin rodeos, sin relleno.</p>
+        <p>En SYNK hacemos que el proceso sea lo de menos — tú enfócate en tu negocio, nosotros nos encargamos de que tu marca llegue a donde tiene que llegar.</p>
       </div>
-    </div>
-    <div class="stats-grid">
-      <div><div class="stat-number">8+</div><div class="stat-label">Años de experiencia</div></div>
-      <div><div class="stat-number">200+</div><div class="stat-label">Proyectos completados</div></div>
-      <div><div class="stat-number">50+</div><div class="stat-label">Clientes satisfechos</div></div>
-      <div><div class="stat-number">15</div><div class="stat-label">Premios de diseño</div></div>
     </div>
   </div>
 </section>
@@ -640,48 +646,40 @@
       <div class="servicio-item">
         <span class="servicio-num">01</span>
         <div class="servicio-body">
-          <h3>Branding &amp; Identidad Visual</h3>
-          <p>Creamos marcas que trascienden. Desde el logo hasta el sistema visual completo, construimos identidades que definen y diferencian.</p>
+          <h3>Branding</h3>
+          <p>Una marca no empieza con un logo. Empieza con una decisión: cómo quieres que te perciban y por qué deberían recordarte. En SYNK convertimos esa decisión en identidad — tus ideas, nuestra creatividad, un resultado que se queda.</p>
         </div>
         <span class="servicio-arrow">→</span>
       </div>
       <div class="servicio-item">
         <span class="servicio-num">02</span>
         <div class="servicio-body">
-          <h3>Diseño Gráfico</h3>
-          <p>Piezas gráficas que comunican con precisión y belleza. Editorial, packaging, señalética y mucho más.</p>
+          <h3>Web</h3>
+          <p>La mayoría de webs existen. Las nuestras funcionan. En SYNK diseñamos cada página con un propósito claro: que quien entre, se quede. Que quien se quede, compre. Que quien compre, vuelva.</p>
         </div>
         <span class="servicio-arrow">→</span>
       </div>
       <div class="servicio-item">
         <span class="servicio-num">03</span>
         <div class="servicio-body">
-          <h3>Estrategia de Marca</h3>
-          <p>Antes de diseñar, pensamos. Desarrollamos el posicionamiento, valores y voz de tu marca para garantizar coherencia total.</p>
+          <h3>Redes Sociales</h3>
+          <p>El contenido bonito no alcanza. Necesita dirección, consistencia y un propósito detrás de cada publicación. En SYNK no arrancamos a crear hasta tener clara la estrategia — porque sin rumbo, cualquier camino te pierde.</p>
         </div>
         <span class="servicio-arrow">→</span>
       </div>
       <div class="servicio-item">
         <span class="servicio-num">04</span>
         <div class="servicio-body">
-          <h3>Diseño Web &amp; Digital</h3>
-          <p>Experiencias digitales memorables. Webs que no solo se ven impresionantes, sino que convierten y retienen.</p>
+          <h3>Diseño</h3>
+          <p>Una pieza bien diseñada no grita. Pero tampoco pasa desapercibida. En SYNK creamos diseños que hablan en el tono exacto que tu marca necesita.</p>
         </div>
         <span class="servicio-arrow">→</span>
       </div>
       <div class="servicio-item">
         <span class="servicio-num">05</span>
         <div class="servicio-body">
-          <h3>Fotografía de Marca</h3>
-          <p>Imágenes que cuentan tu historia. Dirección de arte y fotografía comercial alineada con tu identidad.</p>
-        </div>
-        <span class="servicio-arrow">→</span>
-      </div>
-      <div class="servicio-item">
-        <span class="servicio-num">06</span>
-        <div class="servicio-body">
-          <h3>Consultoría Creativa</h3>
-          <p>Tu marca ya existe. La hacemos brillar. Auditoría, rediseño y evolución de identidades establecidas.</p>
+          <h3>Producción</h3>
+          <p>Las grandes ideas merecen gran producción. En SYNK llevamos tu visión de la cabeza a la pantalla — porque una idea sin producción es solo eso, una idea. La hacemos real, la hacemos visual y la hacemos imposible de ignorar.</p>
         </div>
         <span class="servicio-arrow">→</span>
       </div>
@@ -817,9 +815,8 @@
         <h2 class="contacto-title">Hablemos.</h2>
         <p class="contacto-intro">¿Tienes un proyecto en mente? Cuéntanos sobre él. Nos encanta conocer nuevas ideas y explorar cómo podemos ayudarte a hacerlas realidad.</p>
         <div class="contacto-info">
-          <div><p class="ci-label">Email</p><a href="mailto:hola@synkcreative.com" class="ci-value">hola@synkcreative.com</a></div>
-          <div><p class="ci-label">Teléfono</p><a href="tel:+34600000000" class="ci-value">+34 600 000 000</a></div>
-          <div><p class="ci-label">Ubicación</p><span class="ci-value">Madrid, España</span></div>
+          <div><p class="ci-label">Email</p><a href="mailto:studiosynk9@gmail.com" class="ci-value">studiosynk9@gmail.com</a></div>
+          <div><p class="ci-label">Ubicación</p><span class="ci-value">Colombia</span></div>
         </div>
       </div>
       <div>
@@ -830,7 +827,7 @@
           </div>
           <div class="form-group"><label class="form-label">Empresa</label><input type="text" class="form-input" placeholder="Nombre de tu empresa (opcional)"></div>
           <div class="form-group"><label class="form-label">Mensaje *</label><textarea class="form-textarea" rows="5" placeholder="Cuéntanos sobre tu proyecto..." required></textarea></div>
-          <button type="submit" class="btn-submit">Enviar Mensaje</button>
+          <button type="submit" class="btn-submit" onclick="window.location='mailto:studiosynk9@gmail.com?subject=Proyecto SYNK&body='+encodeURIComponent(document.querySelector('.form-textarea').value)">Enviar Mensaje</button>
         </form>
       </div>
     </div>
@@ -856,17 +853,17 @@
         </ul>
       </div>
       <div>
-        <p class="footer-col-title">Redes Sociales</p>
+        <p class="footer-col-title">Contacto</p>
         <ul class="footer-links">
+          <li><a href="mailto:studiosynk9@gmail.com">studiosynk9@gmail.com <span class="soc-arrow">↗</span></a></li>
           <li><a href="#">Instagram <span class="soc-arrow">↗</span></a></li>
           <li><a href="#">Behance <span class="soc-arrow">↗</span></a></li>
-          <li><a href="#">LinkedIn <span class="soc-arrow">↗</span></a></li>
-          <li><a href="#">Pinterest <span class="soc-arrow">↗</span></a></li>
         </ul>
+        <p style="margin-top:1.5rem;font-size:0.75rem;color:rgba(247,244,239,0.25);">Colombia</p>
       </div>
     </div>
     <div class="footer-bottom">
-      <p class="footer-copy">© 2026 SYNK CREATIVE. Todos los derechos reservados.</p>
+      <p class="footer-copy">© 2026 SYNK. Todos los derechos reservados.</p>
       <div class="footer-legal"><a href="#">Privacidad</a><a href="#">Legal</a></div>
     </div>
   </div>
