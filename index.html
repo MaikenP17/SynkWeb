@@ -1046,6 +1046,16 @@
       // Movement continues on hover — cards remain interactive while in motion
     });
   })();
+
+  // Easter egg: 5 rapid clicks on logo → SYNK Arcade
+  (function () {
+    let n = 0, t;
+    document.querySelector('.nav-logo').addEventListener('click', function () {
+      clearTimeout(t);
+      if (++n >= 5) { n = 0; window.location.href = 'synk-arcade.html'; return; }
+      t = setTimeout(function () { n = 0; }, 2500);
+    });
+  })();
 </script>
 </body>
 </html>

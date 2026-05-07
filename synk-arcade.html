@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SYNK Arcade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Inter:wght@300;400;500&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --dark: #0D0D0D; --cream: #F7F4EF; --purple: #7B3FF2; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background: rgba(123,63,242,0.38); color: inherit; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Scanlines */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+      pointer-events: none; z-index: 999;
+    }
+
+    .header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(247,244,239,0.07);
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600; letter-spacing: 0.25em;
+      text-decoration: none; color: var(--cream);
+    }
+    .back-link {
+      font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: rgba(247,244,239,0.35); text-decoration: none; transition: color 0.3s;
+    }
+    .back-link:hover { color: var(--cream); }
+
+    .hero {
+      text-align: center;
+      padding: clamp(3rem, 8vh, 6rem) 2rem clamp(2rem, 4vh, 3.5rem);
+      animation: fadeUp 0.5s ease both;
+    }
+    .hero-eyebrow {
+      font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--purple); margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(4.5rem, 16vw, 11rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: -0.02em; line-height: 0.88;
+    }
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: clamp(1.1rem, 2.5vw, 1.6rem); font-weight: 300;
+      color: rgba(247,244,239,0.4); margin-top: 1.5rem;
+    }
+
+    .games-section {
+      max-width: 860px; margin: 0 auto;
+      padding: clamp(1.5rem, 4vh, 3rem) 1.5rem clamp(4rem, 10vh, 7rem);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1rem;
+    }
+
+    .game-card {
+      display: block; text-decoration: none; color: var(--cream);
+      background: #111; border: 1px solid rgba(123,63,242,0.15);
+      padding: 2.5rem 2.2rem 3rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.25s;
+    }
+    .game-card:nth-child(1) { animation: fadeUp 0.5s ease 0.15s both; }
+    .game-card:nth-child(2) { animation: fadeUp 0.5s ease 0.25s both; }
+    .game-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .game-card:hover { border-color: rgba(123,63,242,0.5); transform: translateY(-3px); }
+    .game-card:hover::before { opacity: 1; }
+
+    .card-num {
+      font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--purple); opacity: 0.8; margin-bottom: 1.2rem;
+    }
+    .card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 900; text-transform: uppercase; letter-spacing: -0.01em;
+      line-height: 1; margin-bottom: 0.9rem;
+    }
+    .card-desc {
+      font-size: 0.72rem; line-height: 1.65;
+      color: rgba(247,244,239,0.4); letter-spacing: 0.02em;
+    }
+    .card-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      margin-top: 2rem; font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--purple); opacity: 0.7;
+      transition: opacity 0.3s, gap 0.3s;
+    }
+    .game-card:hover .card-cta { opacity: 1; gap: 0.9rem; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="index.html" class="logo">SYNK</a>
+    <a href="index.html" class="back-link">← Volver al inicio</a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="hero-eyebrow">Easter Egg Desbloqueado ✦</p>
+      <h1 class="hero-title">SYNK<br>Arcade</h1>
+      <p class="hero-sub">"Ideas en juego."</p>
+    </section>
+
+    <div class="games-section">
+      <a href="synk-snake.html" class="game-card">
+        <p class="card-num">01 — Juego</p>
+        <h2 class="card-title">SYNK Snake</h2>
+        <p class="card-desc">Dirige la serpiente, recoge ideas.<br>Clásico, rápido, adictivo.</p>
+        <span class="card-cta">Jugar →</span>
+      </a>
+      <a href="synk-breakout.html" class="game-card">
+        <p class="card-num">02 — Juego</p>
+        <h2 class="card-title">SYNK Breakout</h2>
+        <p class="card-desc">Rompe los bloques, no el ritmo.<br>Precisión y velocidad.</p>
+        <span class="card-cta">Jugar →</span>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
