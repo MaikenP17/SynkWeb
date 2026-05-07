@@ -398,7 +398,7 @@
     .footer-legal a:hover { color: rgba(247,244,239,0.45); }
 
     /* ── REEL / MARQUEE ── */
-    #reel {
+    #proyectos {
       background: var(--dark);
       height: 90vh;
       overflow: hidden;
@@ -499,6 +499,26 @@
       border-color: rgba(255,255,255,0.35); color: #fff;
     }
 
+    /* ── PROCESO items inside #nosotros (cream bg overrides) ── */
+    #nosotros .proceso-list { border-top-color: rgba(13,13,13,0.08); }
+    #nosotros .proceso-item { border-bottom-color: rgba(13,13,13,0.08); }
+    #nosotros .proceso-num { color: rgba(13,13,13,0.1); }
+    #nosotros .proceso-item:hover .proceso-num { color: rgba(13,13,13,0.22); }
+    #nosotros .proceso-body h3 { color: var(--dark); }
+    #nosotros .proceso-body p { color: rgba(13,13,13,0.5); }
+    #nosotros .proceso-arrow { color: rgba(13,13,13,0.18); }
+    #nosotros .proceso-item:hover .proceso-arrow { color: rgba(13,13,13,0.5); }
+    .nosotros-process-block {
+      border-top: 1px solid rgba(13,13,13,0.08);
+      margin-top: 5rem; padding-top: 5rem;
+    }
+    .nosotros-process-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+      font-weight: 300; color: var(--dark);
+      margin-bottom: 3.5rem; line-height: 1.1;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 1.25rem 1.5rem; }
@@ -528,10 +548,9 @@
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a>
   <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
-  <a href="#portfolio" onclick="closeMobileMenu()">Portfolio</a>
-  <a href="#proceso" onclick="closeMobileMenu()">Proceso</a>
+  <a href="#proyectos" onclick="closeMobileMenu()">Proyectos</a>
+  <a href="#nosotros" onclick="closeMobileMenu()">Nosotros</a>
   <a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
 </div>
 
@@ -539,10 +558,9 @@
 <nav id="navbar">
   <a href="#inicio" class="nav-logo">SYNK</a>
   <ul class="nav-links">
-    <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#servicios">Servicios</a></li>
-    <li><a href="#portfolio">Portfolio</a></li>
-    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <a href="#contacto" class="nav-cta">Trabajemos juntos</a>
@@ -570,67 +588,6 @@
   <div class="hero-scroll" id="heroScroll">
     <span class="hero-scroll-label">Scroll</span>
     <div class="hero-scroll-line"></div>
-  </div>
-</section>
-
-<!-- REEL -->
-<section id="reel">
-  <div class="reel-header">
-    <div class="reel-label">
-      <span class="reel-label-line"></span>
-      <span class="reel-label-text">Proyectos Seleccionados</span>
-    </div>
-    <a href="#portfolio" class="reel-view-all">Ver portfolio <span>→</span></a>
-  </div>
-  <div class="reel-diagonal-wrap">
-  <div class="reel-track-wrap">
-    <div class="reel-track" id="reelTrack">
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background-image:url('Medios/Images/UFC.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Branding &amp; Identidad</span><h3 class="reel-card-title">Marca Flora</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background-image:url('Medios/Images/Fotog.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Diseño Gráfico</span><h3 class="reel-card-title">Identidad Pulso</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background-image:url('Medios/Images/Setu.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Sistema Áureo</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background-image:url('Medios/Images/paula.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Fotografía de Marca</span><h3 class="reel-card-title">Paula Studio</h3></div>
-      </a>
-      <a href="#inicio" class="reel-card">
-        <div class="reel-card-bg" style="background-image:url('Medios/Images/burger.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
-        <span class="reel-card-arrow">↗</span>
-        <div class="reel-card-content"><span class="reel-card-cat">Diseño Web</span><h3 class="reel-card-title">Burger Brand</h3></div>
-      </a>
-    </div>
-  </div>
-  </div>
-</section>
-
-<!-- NOSOTROS -->
-<section id="nosotros" class="section-pad">
-  <div class="container">
-    <div class="section-label">
-      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Sobre Nosotros</span>
-    </div>
-    <div class="nosotros-grid">
-      <div>
-        <h2 class="section-title" style="color:var(--dark)">Cada proyecto empieza con una conversación honesta.</h2>
-      </div>
-      <div class="nosotros-text">
-        <p>¿Qué no está funcionando? ¿Por qué tu competencia te está ganando? ¿Qué necesita tu marca para que la gente no la olvide? Desde ahí construimos — sin rodeos, sin relleno.</p>
-        <p>En SYNK hacemos que el proceso sea lo de menos — tú enfócate en tu negocio, nosotros nos encargamos de que tu marca llegue a donde tiene que llegar.</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -687,116 +644,86 @@
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section-pad">
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="reel-header">
+    <div class="reel-label">
+      <span class="reel-label-line"></span>
+      <span class="reel-label-text">Proyectos Seleccionados</span>
+    </div>
+    <a href="#contacto" class="reel-view-all">Hablemos <span>→</span></a>
+  </div>
+  <div class="reel-diagonal-wrap">
+  <div class="reel-track-wrap">
+    <div class="reel-track" id="reelTrack">
+      <a href="#contacto" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/UFC.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Branding &amp; Identidad</span><h3 class="reel-card-title">Marca Flora</h3></div>
+      </a>
+      <a href="#contacto" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/Fotog.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Diseño Gráfico</span><h3 class="reel-card-title">Identidad Pulso</h3></div>
+      </a>
+      <a href="#contacto" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/Setu.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Identidad Visual</span><h3 class="reel-card-title">Sistema Áureo</h3></div>
+      </a>
+      <a href="#contacto" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/paula.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Fotografía de Marca</span><h3 class="reel-card-title">Paula Studio</h3></div>
+      </a>
+      <a href="#contacto" class="reel-card">
+        <div class="reel-card-bg" style="background-image:url('Medios/Images/burger.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
+        <span class="reel-card-arrow">↗</span>
+        <div class="reel-card-content"><span class="reel-card-cat">Diseño Web</span><h3 class="reel-card-title">Burger Brand</h3></div>
+      </a>
+    </div>
+  </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros" class="section-pad">
   <div class="container">
     <div class="section-label">
       <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Portfolio</span>
+      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Sobre Nosotros</span>
     </div>
-    <div class="portfolio-header">
-      <h2 class="section-title">Trabajo que habla por sí solo.</h2>
-      <a href="#contacto" class="portfolio-link">Ver todo <span>→</span></a>
-    </div>
-    <div class="portfolio-grid">
-      <div class="p-card wide">
-        <div class="p-card-bg g1"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Branding &amp; Identidad</p><h3 class="p-title">Marca Flora</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
+    <div class="nosotros-grid">
+      <div>
+        <h2 class="section-title" style="color:var(--dark)">Cada proyecto empieza con una conversación honesta.</h2>
       </div>
-      <div class="p-card square">
-        <div class="p-card-bg g2"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Diseño Gráfico</p><h3 class="p-title">Identidad Pulso</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
-      </div>
-      <div class="p-card square">
-        <div class="p-card-bg g3"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Identidad Visual</p><h3 class="p-title">Sistema Áureo</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
-      </div>
-      <div class="p-card square">
-        <div class="p-card-bg g4"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Estrategia de Marca</p><h3 class="p-title">Branding Bosque</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
-      </div>
-      <div class="p-card wide">
-        <div class="p-card-bg g5"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Diseño Web</p><h3 class="p-title">Campaña Nómade</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
-      </div>
-      <div class="p-card square">
-        <div class="p-card-bg g6"></div><div class="p-noise"></div><div class="p-overlay"></div>
-        <div class="p-info"><p class="p-cat">Fotografía de Marca</p><h3 class="p-title">Marca Océano</h3></div>
-        <div class="p-btn"><span>Ver Proyecto</span></div>
+      <div class="nosotros-text">
+        <p>¿Qué no está funcionando? ¿Por qué tu competencia te está ganando? ¿Qué necesita tu marca para que la gente no la olvide? Desde ahí construimos — sin rodeos, sin relleno.</p>
+        <p>En SYNK hacemos que el proceso sea lo de menos — tú enfócate en tu negocio, nosotros nos encargamos de que tu marca llegue a donde tiene que llegar.</p>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- PROCESO -->
-<section id="proceso" class="section-pad">
-  <div class="container">
-    <div class="section-label">
-      <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Nuestro Proceso</span>
-    </div>
-    <h2 class="section-title" style="color:var(--cream);margin-bottom:5rem">Así es como trabajamos.</h2>
-    <div class="proceso-list">
-      <div class="proceso-item">
-        <span class="proceso-num">01</span>
-        <div class="proceso-body"><h3>Descubrimiento</h3><p>Nos sumergimos en tu mundo. Entendemos tu negocio, audiencia, competencia y objetivos para sentar las bases de una estrategia sólida.</p></div>
-        <span class="proceso-arrow">→</span>
-      </div>
-      <div class="proceso-item">
-        <span class="proceso-num">02</span>
-        <div class="proceso-body"><h3>Estrategia</h3><p>Trazamos el camino. Definimos el posicionamiento, los atributos de marca y la dirección creativa que guiará todo el proceso.</p></div>
-        <span class="proceso-arrow">→</span>
-      </div>
-      <div class="proceso-item">
-        <span class="proceso-num">03</span>
-        <div class="proceso-body"><h3>Creación</h3><p>Donde la magia sucede. Diseñamos, iteramos y refinamos hasta alcanzar una solución que supere tus expectativas.</p></div>
-        <span class="proceso-arrow">→</span>
-      </div>
-      <div class="proceso-item">
-        <span class="proceso-num">04</span>
-        <div class="proceso-body"><h3>Entrega &amp; Evolución</h3><p>Implementamos, lanzamos y no desaparecemos. Acompañamos la evolución de tu marca a largo plazo.</p></div>
-        <span class="proceso-arrow">→</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALES -->
-<section id="testimoniales" class="section-pad">
-  <div class="container">
-    <div class="section-label">
-      <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Testimoniales</span>
-    </div>
-    <h2 class="section-title" style="color:var(--cream);margin-bottom:5rem">Lo que dicen nuestros clientes.</h2>
-    <div class="testi-grid">
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">SYNK CREATIVE transformó completamente la percepción de nuestra marca. El proceso fue impecable y el resultado superó todas nuestras expectativas.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">M</div>
-          <div><div class="testi-name">María García</div><div class="testi-role">Fundadora, Bloom Studio</div></div>
+    <div class="nosotros-process-block">
+      <h3 class="nosotros-process-title">Así trabajamos.</h3>
+      <div class="proceso-list">
+        <div class="proceso-item">
+          <span class="proceso-num">01</span>
+          <div class="proceso-body"><h3>Descubrimiento</h3><p>Nos sumergimos en tu mundo. Entendemos tu negocio, audiencia, competencia y objetivos para sentar las bases de una estrategia sólida.</p></div>
+          <span class="proceso-arrow">→</span>
         </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">El equipo entendió perfectamente nuestra visión desde el primer día. Entregaron una identidad visual que realmente nos representa y nos diferencia.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">C</div>
-          <div><div class="testi-name">Carlos Rodríguez</div><div class="testi-role">CEO, Nexo Digital</div></div>
+        <div class="proceso-item">
+          <span class="proceso-num">02</span>
+          <div class="proceso-body"><h3>Estrategia</h3><p>Trazamos el camino. Definimos el posicionamiento, los atributos de marca y la dirección creativa que guiará todo el proceso.</p></div>
+          <span class="proceso-arrow">→</span>
         </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-quote">"</div>
-        <p class="testi-text">Trabajo excepcional. No solo diseñaron nuestra marca, nos dieron una estrategia completa que ha impactado directamente en nuestro crecimiento.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">A</div>
-          <div><div class="testi-name">Ana Martínez</div><div class="testi-role">Directora de Arte, Forma Estudio</div></div>
+        <div class="proceso-item">
+          <span class="proceso-num">03</span>
+          <div class="proceso-body"><h3>Creación</h3><p>Donde la magia sucede. Diseñamos, iteramos y refinamos hasta alcanzar una solución que supere tus expectativas.</p></div>
+          <span class="proceso-arrow">→</span>
+        </div>
+        <div class="proceso-item">
+          <span class="proceso-num">04</span>
+          <div class="proceso-body"><h3>Entrega &amp; Evolución</h3><p>Implementamos, lanzamos y no desaparecemos. Acompañamos la evolución de tu marca a largo plazo.</p></div>
+          <span class="proceso-arrow">→</span>
         </div>
       </div>
     </div>
@@ -845,10 +772,9 @@
       <div>
         <p class="footer-col-title">Navegación</p>
         <ul class="footer-links">
-          <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#servicios">Servicios</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
       </div>
@@ -970,16 +896,12 @@
   /* ─── SCROLL ANIMATIONS ───────────────────────────── */
   const scrollCfg = { start: 'top 88%', toggleActions: 'play none none none' };
 
-  // Generic fade-up: section-label, nosotros grid children, titles, stats, portfolio header, testi section title, contacto left col, form
+  // Generic fade-up
   const fadeUpSelectors = [
     '.section-label',
     '.nosotros-grid > div',
     '#nosotros .section-title',
     '#servicios .section-title',
-    '#portfolio .section-title',
-    '.portfolio-link',
-    '#proceso .section-title',
-    '#testimoniales .section-title',
     '.contacto-title',
     '.contacto-intro',
     '.contacto-info',
@@ -1004,22 +926,10 @@
     scrollTrigger: { trigger: '.servicios-list', start: 'top 85%', toggleActions: 'play none none none' }
   });
 
-  // Portfolio cards stagger
-  gsap.from('.p-card', {
-    y: 40, opacity: 0, duration: 0.75, stagger: 0.1, ease: 'power2.out',
-    scrollTrigger: { trigger: '.portfolio-grid', start: 'top 85%', toggleActions: 'play none none none' }
-  });
-
-  // Process rows from left
+  // Nosotros process steps from left
   gsap.from('.proceso-item', {
     x: -40, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power2.out',
     scrollTrigger: { trigger: '.proceso-list', start: 'top 85%', toggleActions: 'play none none none' }
-  });
-
-  // Testimonial cards stagger
-  gsap.from('.testi-card', {
-    y: 35, opacity: 0, duration: 0.75, stagger: 0.13, ease: 'power2.out',
-    scrollTrigger: { trigger: '.testi-grid', ...scrollCfg }
   });
 
   /* ─── REEL INFINITE MARQUEE ──────────────────────────── */
