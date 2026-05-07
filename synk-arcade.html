@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600&family=Inter:wght@300;400;500&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="Medios/sounds/synk-audio.js"></script>
   <style>
     :root { --dark: #0D0D0D; --cream: #F7F4EF; --purple: #7B3FF2; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -58,6 +59,7 @@
       font-size: clamp(4.5rem, 16vw, 11rem);
       font-weight: 900; text-transform: uppercase;
       letter-spacing: -0.02em; line-height: 0.88;
+      animation: fadeUp 0.6s ease 0.1s both, flicker 8s infinite 2s;
     }
     .hero-sub {
       font-family: 'Cormorant Garamond', serif;
@@ -81,6 +83,11 @@
     }
     .game-card:nth-child(1) { animation: fadeUp 0.5s ease 0.15s both; }
     .game-card:nth-child(2) { animation: fadeUp 0.5s ease 0.25s both; }
+    /* CRT flicker */
+    @keyframes flicker {
+      0%,100% { opacity: 1; } 92% { opacity: 1; } 93% { opacity: 0.82; } 94% { opacity: 1; }
+      97% { opacity: 1; } 98% { opacity: 0.88; } 99% { opacity: 1; }
+    }
     .game-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 1px;
@@ -121,7 +128,7 @@
 <body>
   <header class="header">
     <a href="index.html" class="logo">SYNK</a>
-    <a href="index.html" class="back-link">← Volver al inicio</a>
+    <a href="index.html" class="back-link" onmouseenter="SynkAudio.hover()">← Volver al inicio</a>
   </header>
 
   <main>
@@ -132,13 +139,17 @@
     </section>
 
     <div class="games-section">
-      <a href="synk-snake.html" class="game-card">
+      <a href="synk-snake.html" class="game-card"
+        onmouseenter="SynkAudio.hover()"
+        onclick="SynkAudio.select()">
         <p class="card-num">01 — Juego</p>
         <h2 class="card-title">SYNK Snake</h2>
         <p class="card-desc">Dirige la serpiente, recoge ideas.<br>Clásico, rápido, adictivo.</p>
         <span class="card-cta">Jugar →</span>
       </a>
-      <a href="synk-breakout.html" class="game-card">
+      <a href="synk-breakout.html" class="game-card"
+        onmouseenter="SynkAudio.hover()"
+        onclick="SynkAudio.select()">
         <p class="card-num">02 — Juego</p>
         <h2 class="card-title">SYNK Breakout</h2>
         <p class="card-desc">Rompe los bloques, no el ritmo.<br>Precisión y velocidad.</p>
@@ -146,5 +157,10 @@
       </a>
     </div>
   </main>
+  <script>
+    ['click','touchstart'].forEach(ev =>
+      document.addEventListener(ev, () => SynkAudio.init(), { once: true })
+    );
+  </script>
 </body>
 </html>
