@@ -230,17 +230,18 @@
     }
 
     /* ── NOSOTROS ── */
-    #nosotros { background: var(--cream); color: var(--dark); }
-    #nosotros .section-label-line { background: rgba(13,13,13,0.3); }
-    #nosotros .section-label-text { color: rgba(13,13,13,0.35); }
+    #nosotros {
+      background:
+        radial-gradient(ellipse 60% 45% at 22% 52%, rgba(123,63,242,0.05) 0%, transparent 70%),
+        linear-gradient(180deg, #0D0D0D 0%, #0F0A1A 40%, #0D0D0D 100%);
+      color: var(--cream);
+    }
+    #nosotros .section-label-line { background: rgba(247,244,239,0.22); }
+    #nosotros .section-label-text { color: rgba(247,244,239,0.35); }
     .nosotros-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 6rem; }
     @media (min-width: 1024px) { .nosotros-grid { grid-template-columns: 1fr 1fr; gap: 7rem; } }
-    .nosotros-text p { color: rgba(13,13,13,0.65); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
-    .nosotros-text p:last-child { color: rgba(13,13,13,0.45); }
-    .stats-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 2rem; padding-top: 3rem; border-top: 1px solid rgba(13,13,13,0.1); }
-    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4,1fr); } }
-    .stat-number { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5rem,5vw,4.5rem); font-weight: 300; color: var(--dark); line-height: 1; margin-bottom: 0.5rem; }
-    .stat-label { font-size: 0.8rem; color: rgba(13,13,13,0.45); }
+    .nosotros-text p { color: rgba(247,244,239,0.62); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
+    .nosotros-text p:last-child { color: rgba(247,244,239,0.42); }
 
     /* ── SERVICIOS ── */
     #servicios { background: var(--dark); }
@@ -347,36 +348,36 @@
     .testi-role { font-size: 0.75rem; color: rgba(247,244,239,0.35); margin-top: 0.15rem; }
 
     /* ── CONTACTO ── */
-    #contacto { background: var(--cream); color: var(--dark); }
-    #contacto .section-label-line { background: rgba(13,13,13,0.3); }
-    #contacto .section-label-text { color: rgba(13,13,13,0.35); }
+    #contacto { background: var(--dark); color: var(--cream); }
+    #contacto .section-label-line { background: rgba(247,244,239,0.25); }
+    #contacto .section-label-text { color: rgba(247,244,239,0.35); }
     .contacto-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
     @media (min-width: 1024px) { .contacto-grid { grid-template-columns: 1fr 1fr; gap: 7rem; } }
-    .contacto-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem,9vw,9rem); font-weight: 300; color: var(--dark); line-height: 1; margin-bottom: 1.5rem; }
-    .contacto-intro { font-size: 1.05rem; color: rgba(13,13,13,0.55); line-height: 1.75; margin-bottom: 3rem; }
+    .contacto-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem,9vw,9rem); font-weight: 300; color: var(--cream); line-height: 1; margin-bottom: 1.5rem; }
+    .contacto-intro { font-size: 1.05rem; color: rgba(247,244,239,0.52); line-height: 1.75; margin-bottom: 3rem; }
     .contacto-info { display: flex; flex-direction: column; gap: 1.5rem; }
-    .ci-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(13,13,13,0.35); margin-bottom: 0.25rem; }
-    .ci-value { font-size: 1.05rem; color: var(--dark); text-decoration: none; transition: color 0.3s; display: block; }
+    .ci-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(247,244,239,0.32); margin-bottom: 0.25rem; }
+    .ci-value { font-size: 1.05rem; color: rgba(247,244,239,0.75); text-decoration: none; transition: color 0.3s; display: block; }
     a.ci-value:hover { color: var(--purple); }
     .contact-form { display: flex; flex-direction: column; gap: 2rem; }
     .form-row { display: grid; grid-template-columns: 1fr; gap: 2rem; }
     @media (min-width: 480px) { .form-row { grid-template-columns: 1fr 1fr; } }
     .form-group { display: flex; flex-direction: column; }
-    .form-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(13,13,13,0.35); margin-bottom: 0.75rem; }
+    .form-label { font-size: 0.63rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(247,244,239,0.32); margin-bottom: 0.75rem; }
     .form-input, .form-textarea {
-      background: transparent; border: none; border-bottom: 1px solid rgba(13,13,13,0.2);
+      background: transparent; border: none; border-bottom: 1px solid rgba(247,244,239,0.15);
       padding: 1rem 0; font-family: 'Inter', sans-serif; font-size: 1rem;
-      color: var(--dark); outline: none; transition: border-color 0.3s; resize: none;
+      color: var(--cream); outline: none; transition: border-color 0.3s; resize: none;
     }
-    .form-input::placeholder, .form-textarea::placeholder { color: rgba(13,13,13,0.3); }
-    .form-input:focus, .form-textarea:focus { border-bottom-color: rgba(13,13,13,0.6); }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(247,244,239,0.25); }
+    .form-input:focus, .form-textarea:focus { border-bottom-color: rgba(247,244,239,0.55); }
     .btn-submit {
-      width: 100%; padding: 1rem; background: var(--dark); color: var(--cream);
+      width: 100%; padding: 1rem; background: var(--cream); color: var(--dark);
       border: none; font-family: 'Inter', sans-serif; font-size: 0.7rem;
       letter-spacing: 0.25em; text-transform: uppercase; font-weight: 500;
-      cursor: pointer; transition: background 0.3s;
+      cursor: pointer; transition: background 0.3s, color 0.3s;
     }
-    .btn-submit:hover { background: var(--purple); }
+    .btn-submit:hover { background: var(--purple); color: var(--cream); }
 
     /* ── FOOTER ── */
     footer { background: var(--dark); border-top: 1px solid rgba(247,244,239,0.06); padding: 5rem 0 3rem; }
@@ -499,24 +500,32 @@
       border-color: rgba(255,255,255,0.35); color: #fff;
     }
 
-    /* ── PROCESO items inside #nosotros (cream bg overrides) ── */
-    #nosotros .proceso-list { border-top-color: rgba(13,13,13,0.08); }
-    #nosotros .proceso-item { border-bottom-color: rgba(13,13,13,0.08); }
-    #nosotros .proceso-num { color: rgba(13,13,13,0.1); }
-    #nosotros .proceso-item:hover .proceso-num { color: rgba(13,13,13,0.22); }
-    #nosotros .proceso-body h3 { color: var(--dark); }
-    #nosotros .proceso-body p { color: rgba(13,13,13,0.5); }
-    #nosotros .proceso-arrow { color: rgba(13,13,13,0.18); }
-    #nosotros .proceso-item:hover .proceso-arrow { color: rgba(13,13,13,0.5); }
+    /* ── Process block inside #nosotros ── */
     .nosotros-process-block {
-      border-top: 1px solid rgba(13,13,13,0.08);
+      border-top: 1px solid rgba(247,244,239,0.1);
       margin-top: 5rem; padding-top: 5rem;
     }
     .nosotros-process-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(1.8rem, 3.5vw, 3.5rem);
-      font-weight: 300; color: var(--dark);
+      font-weight: 300; color: var(--cream);
       margin-bottom: 3.5rem; line-height: 1.1;
+    }
+
+    /* ── SECTION TRANSITIONS ── */
+    /* Proyectos → Nosotros: no overlay on the cards.
+       A box-shadow cast upward from nosotros creates a depth cue at the join
+       without touching the reel area. */
+    #nosotros {
+      box-shadow: 0 -32px 56px -4px rgba(0,0,0,0.7);
+    }
+    /* Nosotros → Contacto: short dark-to-dark edge blend */
+    #nosotros::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 55px;
+      background: linear-gradient(to bottom, transparent, #0D0D0D);
+      pointer-events: none; z-index: 2;
     }
 
     /* ── RESPONSIVE ── */
@@ -651,7 +660,6 @@
       <span class="reel-label-line"></span>
       <span class="reel-label-text">Proyectos Seleccionados</span>
     </div>
-    <a href="#contacto" class="reel-view-all">Hablemos <span>→</span></a>
   </div>
   <div class="reel-diagonal-wrap">
   <div class="reel-track-wrap">
@@ -690,12 +698,12 @@
 <section id="nosotros" class="section-pad">
   <div class="container">
     <div class="section-label">
-      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Sobre Nosotros</span>
+      <span class="section-label-line" style="background:rgba(247,244,239,0.22)"></span>
+      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Sobre Nosotros</span>
     </div>
     <div class="nosotros-grid">
       <div>
-        <h2 class="section-title" style="color:var(--dark)">Cada proyecto empieza con una conversación honesta.</h2>
+        <h2 class="section-title" style="color:var(--cream)">Cada proyecto empieza con una conversación honesta.</h2>
       </div>
       <div class="nosotros-text">
         <p>¿Qué no está funcionando? ¿Por qué tu competencia te está ganando? ¿Qué necesita tu marca para que la gente no la olvide? Desde ahí construimos — sin rodeos, sin relleno.</p>
@@ -734,8 +742,8 @@
 <section id="contacto" class="section-pad">
   <div class="container">
     <div class="section-label">
-      <span class="section-label-line" style="background:rgba(13,13,13,0.3)"></span>
-      <span class="section-label-text" style="color:rgba(13,13,13,0.35)">Contacto</span>
+      <span class="section-label-line" style="background:rgba(247,244,239,0.25)"></span>
+      <span class="section-label-text" style="color:rgba(247,244,239,0.35)">Contacto</span>
     </div>
     <div class="contacto-grid">
       <div>
