@@ -131,61 +131,88 @@
       position: absolute; inset: 0; z-index: 3;
       display: flex; flex-direction: column;
       justify-content: flex-end;
-      align-items: flex-start;
-      padding: clamp(1.5rem, 4.5vw, 6rem);
-      padding-bottom: clamp(5rem, 11vh, 9rem);
+      align-items: stretch;
+      padding: clamp(1.2rem, 3.5vw, 4.5rem);
+      padding-bottom: clamp(2.5rem, 7vh, 5.5rem);
       pointer-events: none;
-      gap: clamp(1.2rem, 3vw, 4rem);
-      /* blend at container level so it composites against the video */
+      gap: clamp(0.5rem, 1.5vh, 2rem);
       mix-blend-mode: difference;
     }
     .hero-text-line {
-      display: flex; flex-direction: column; align-items: flex-start;
-      gap: 0.05em;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: clamp(1.2rem, 2.8vw, 4.5rem);
       opacity: 0; transform: translateY(50px);
     }
-    .ht-sm {
+    .hero-text-line:first-child { align-items: baseline; }
+
+    /* Shared base */
+    .ht-sinc, .ht-tus, .ht-con, .ht-creat {
       font-family: 'Barlow Condensed', 'Inter', sans-serif;
-      font-size: clamp(1rem, 2.8vw, 4rem);
       font-weight: 900; text-transform: uppercase;
-      letter-spacing: 0.12em; line-height: 1;
-      color: rgba(255,255,255,0.7);
       white-space: nowrap;
     }
-    .ht-lg {
-      font-family: 'Barlow Condensed', 'Inter', sans-serif;
-      font-size: clamp(4rem, 12vw, 16rem);
-      font-weight: 900; text-transform: uppercase;
-      letter-spacing: -0.03em; line-height: 0.86;
+
+    .ht-sinc {
+      font-size: clamp(2rem, 5vw, 7rem);
+      letter-spacing: 0.04em; line-height: 0.9;
+      color: rgba(255,255,255,0.55);
+      -webkit-text-fill-color: rgba(255,255,255,0.55);
+      flex-shrink: 0;
+    }
+
+    .ht-tus {
+      font-size: clamp(4rem, 15vw, 21rem);
+      letter-spacing: -0.05em; line-height: 0.82;
+      color: rgba(255,255,255,0.92);
+      -webkit-text-fill-color: rgba(255,255,255,0.92);
+      -webkit-text-stroke: 1px rgba(255,255,255,0.22);
+    }
+
+    .ht-con {
+      font-size: clamp(1.5rem, 4vw, 5.5rem);
+      letter-spacing: 0.06em; line-height: 0.9;
+      color: rgba(255,255,255,0.48);
+      -webkit-text-fill-color: rgba(255,255,255,0.48);
+      flex-shrink: 0;
+    }
+
+    .ht-creat {
+      font-size: clamp(4rem, 13.5vw, 19rem);
+      letter-spacing: -0.05em; line-height: 0.82;
       color: rgba(255,255,255,0.88);
       -webkit-text-fill-color: rgba(255,255,255,0.88);
-      -webkit-text-stroke: 1px rgba(255,255,255,0.25);
-      white-space: nowrap;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.22);
     }
-    /* Large tablet / laptop */
+
+    @media (max-width: 1280px) {
+      .ht-sinc  { font-size: clamp(1.8rem, 5.2vw, 6rem); }
+      .ht-tus   { font-size: clamp(3.5rem, 15.5vw, 18rem); }
+      .ht-con   { font-size: clamp(1.3rem, 4.2vw, 5rem); }
+      .ht-creat { font-size: clamp(3.5rem, 14vw, 16.5rem); }
+    }
     @media (max-width: 1024px) {
-      .ht-sm { font-size: clamp(0.9rem, 4vw, 2rem); }
-      .ht-lg { font-size: clamp(3.2rem, 14vw, 10rem); }
+      .ht-sinc  { font-size: clamp(1.6rem, 5.5vw, 5rem); }
+      .ht-tus   { font-size: clamp(3rem, 16vw, 14rem); }
+      .ht-con   { font-size: clamp(1.2rem, 4.5vw, 4.2rem); }
+      .ht-creat { font-size: clamp(3rem, 14.5vw, 13rem); }
     }
-    /* Tablet */
     @media (max-width: 768px) {
-      .hero-tagline-overlay {
-        padding: clamp(1.2rem, 4vw, 2.5rem);
-        padding-bottom: 14vh;
-        gap: 1.6rem;
-      }
-      .ht-sm { font-size: clamp(0.85rem, 5.5vw, 2rem); }
-      .ht-lg { font-size: clamp(3rem, 18vw, 8rem); }
+      .hero-tagline-overlay { padding: 1.5rem; padding-bottom: 13vh; }
+      .hero-text-line { gap: 0.15em; }
+      .ht-sinc  { font-size: clamp(1.4rem, 5.5vw, 3.5rem); }
+      .ht-tus   { font-size: clamp(2.8rem, 16vw, 9rem); }
+      .ht-con   { font-size: clamp(1.1rem, 4.5vw, 3rem); }
+      .ht-creat { font-size: clamp(2.8rem, 15vw, 8.5rem); }
     }
-    /* Mobile */
     @media (max-width: 480px) {
-      .hero-tagline-overlay {
-        padding: 1.2rem;
-        padding-bottom: 20vh;
-        gap: 1.2rem;
-      }
-      .ht-sm { font-size: clamp(0.85rem, 6.5vw, 1.8rem); }
-      .ht-lg { font-size: clamp(3rem, 21vw, 6.5rem); }
+      .hero-tagline-overlay { padding: 1rem; padding-bottom: 18vh; }
+      .hero-text-line { flex-direction: column; gap: 0; }
+      .ht-sinc  { font-size: clamp(1.2rem, 7vw, 2.8rem); letter-spacing: 0.06em; }
+      .ht-tus   { font-size: clamp(3.5rem, 22vw, 7rem); }
+      .ht-con   { font-size: clamp(1rem, 6vw, 2.2rem); letter-spacing: 0.06em; }
+      .ht-creat { font-size: clamp(3.5rem, 24vw, 8rem); }
     }
     .btn-primary {
       display: inline-block; padding: 0.9rem 1.8rem;
@@ -586,12 +613,10 @@
   <div class="hero-video-overlay"></div>
   <div class="hero-tagline-overlay">
     <div class="hero-text-line">
-      <span class="ht-sm">SINCRONIZAMOS</span>
-      <span class="ht-lg">TUS IDEAS</span>
+      <span class="ht-sinc">SINCRONIZAMOS</span><span class="ht-tus">TUS IDEAS</span>
     </div>
     <div class="hero-text-line">
-      <span class="ht-sm">CON NUESTRA</span>
-      <span class="ht-lg">CREATIVIDAD</span>
+      <span class="ht-con">CON NUESTRA</span><span class="ht-creat">CREATIVIDAD</span>
     </div>
   </div>
   <div class="hero-scroll" id="heroScroll">
