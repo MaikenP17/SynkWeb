@@ -266,35 +266,73 @@
     }
     #nosotros .section-label-line { background: rgba(247,244,239,0.22); }
     #nosotros .section-label-text { color: rgba(247,244,239,0.35); }
-    .nosotros-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 6rem; }
-    @media (min-width: 1024px) { .nosotros-grid { grid-template-columns: 1fr 1fr; gap: 7rem; } }
-    .nosotros-text p { color: rgba(247,244,239,0.62); font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
-    .nosotros-text p:last-child { color: rgba(247,244,239,0.42); }
+    #nosotros .section-title { color: var(--cream); font-size: clamp(3.2rem, 6.5vw, 9rem); max-width: none; line-height: 1.05; }
+    .nosotros-grid { display: grid; grid-template-columns: 1fr; gap: 5rem; margin-bottom: 7rem; }
+    @media (min-width: 1024px) { .nosotros-grid { grid-template-columns: 1.15fr 1fr; gap: 9rem; align-items: start; } }
+    .nosotros-text p { color: rgba(247,244,239,0.62); font-size: clamp(0.95rem, 1.1vw, 1.1rem); line-height: 1.9; margin-bottom: 2rem; }
+    .nosotros-text p:last-child { color: rgba(247,244,239,0.38); font-size: clamp(0.88rem, 1vw, 1rem); }
+    .nosotros-text p:first-child { border-left: 1px solid rgba(123,63,242,0.55); padding-left: 1.5rem; font-size: clamp(1rem, 1.25vw, 1.2rem); color: rgba(247,244,239,0.75); }
 
     /* ── SERVICIOS ── */
     #servicios { background: var(--dark); }
     #servicios .section-label-line { background: rgba(247,244,239,0.3); }
     #servicios .section-label-text { color: rgba(247,244,239,0.35); }
     #servicios .section-title { color: var(--cream); margin-bottom: 4rem; max-width: 600px; }
-    .servicios-list { border-top: 1px solid rgba(247,244,239,0.08); }
+    .servicios-list { border-top: 1px solid rgba(247,244,239,0.07); }
     .servicio-item {
-      display: grid; grid-template-columns: 70px 1fr;
-      gap: 2rem; padding: 2.5rem 0;
-      border-bottom: 1px solid rgba(247,244,239,0.08);
-      transition: padding-left 0.45s ease; cursor: default;
+      display: grid;
+      grid-template-columns: clamp(2.5rem, 5vw, 5rem) 1fr auto;
+      align-items: start;
+      gap: 0 clamp(1.5rem, 3vw, 3.5rem);
+      padding: clamp(1.8rem, 3.5vh, 3rem) 0;
+      border-bottom: 1px solid rgba(247,244,239,0.07);
+      cursor: default;
+      position: relative;
+      transition: padding-left 0.5s cubic-bezier(0.25,0.46,0.45,0.94), border-color 0.4s;
+      overflow: hidden;
     }
-    @media (min-width: 768px) { .servicio-item { grid-template-columns: 80px 1fr 28px; gap: 3rem; padding: 3rem 0; } }
-    .servicio-item:hover { padding-left: 1rem; }
+    .servicio-item::before {
+      content: '';
+      position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+      background: var(--purple);
+      transform: scaleY(0); transform-origin: bottom;
+      transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+    .servicio-item:hover { padding-left: clamp(0.8rem, 1.8vw, 2rem); border-bottom-color: rgba(247,244,239,0.15); }
+    .servicio-item:hover::before { transform: scaleY(1); }
     .servicio-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300;
-      color: rgba(247,244,239,0.1); line-height: 1; transition: color 0.4s;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(0.6rem, 0.75vw, 0.85rem);
+      font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+      color: rgba(247,244,239,0.22); line-height: 1;
+      padding-top: 0.85em; transition: color 0.4s;
     }
-    .servicio-item:hover .servicio-num { color: rgba(247,244,239,0.28); }
-    .servicio-body h3 { font-size: 1.15rem; font-weight: 500; color: var(--cream); margin-bottom: 0.6rem; }
-    .servicio-body p { font-size: 0.875rem; color: rgba(247,244,239,0.45); line-height: 1.7; max-width: 520px; }
-    .servicio-arrow { color: rgba(247,244,239,0.2); font-size: 1.4rem; align-self: center; transition: all 0.4s; display: none; }
+    .servicio-item:hover .servicio-num { color: var(--purple); }
+    .servicio-body h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3rem, 6vw, 8.5rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: -0.02em; line-height: 0.88;
+      color: var(--cream); transition: letter-spacing 0.5s ease;
+    }
+    .servicio-item:hover .servicio-body h3 { letter-spacing: -0.01em; }
+    .servicio-body p {
+      font-size: clamp(0.8rem, 0.9vw, 0.92rem);
+      color: rgba(247,244,239,0.45); line-height: 1.75; max-width: 560px;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(0.25,0.46,0.45,0.94),
+                  opacity 0.4s ease 0.1s, margin-top 0.4s ease;
+    }
+    @media (min-width: 769px) {
+      .servicio-body p { max-height: 0; opacity: 0; margin-top: 0; }
+      .servicio-item:hover .servicio-body p { max-height: 140px; opacity: 1; margin-top: 1.2rem; }
+    }
+    @media (max-width: 768px) {
+      .servicio-body p { max-height: none; opacity: 1; margin-top: 0.8rem; }
+    }
+    .servicio-arrow { color: rgba(247,244,239,0.15); font-size: 1.6rem; align-self: center; display: none; transition: color 0.4s, transform 0.4s; }
     @media (min-width: 768px) { .servicio-arrow { display: block; } }
-    .servicio-item:hover .servicio-arrow { color: rgba(247,244,239,0.55); transform: translateX(6px); }
+    .servicio-item:hover .servicio-arrow { color: var(--purple); transform: translateX(8px); }
 
     /* ── PORTFOLIO ── */
     #portfolio { background: var(--cream); color: var(--dark); }
@@ -343,21 +381,39 @@
     #proceso .section-label-line { background: rgba(247,244,239,0.3); }
     #proceso .section-label-text { color: rgba(247,244,239,0.35); }
     #proceso .section-title { color: var(--cream); margin-bottom: 5rem; max-width: 600px; }
-    .proceso-list { border-top: 1px solid rgba(247,244,239,0.15); }
+    .proceso-list { border-top: none; display: grid; grid-template-columns: 1fr; gap: 0; }
+    @media (min-width: 768px) { .proceso-list { grid-template-columns: repeat(4, 1fr); } }
     .proceso-item {
-      display: grid; grid-template-columns: 1fr; gap: 1.5rem;
-      padding: 3rem 0; border-bottom: 1px solid rgba(247,244,239,0.1);
-      transition: padding-left 0.5s ease; cursor: default;
+      display: block;
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-bottom: 1px solid rgba(247,244,239,0.07);
+      cursor: default;
+      transition: border-top-color 0.5s;
+      position: relative;
     }
-    @media (min-width: 768px) { .proceso-item { grid-template-columns: 110px 1fr 32px; align-items: center; gap: 2.5rem; } }
-    .proceso-item:hover { padding-left: 1.25rem; }
-    .proceso-num { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 300; color: rgba(247,244,239,0.18); line-height: 1; transition: color 0.5s; }
-    .proceso-item:hover .proceso-num { color: rgba(247,244,239,0.42); }
-    .proceso-body h3 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem,3vw,2rem); font-weight: 300; color: var(--cream); margin-bottom: 0.6rem; }
-    .proceso-body p { font-size: 1rem; color: rgba(247,244,239,0.5); line-height: 1.7; max-width: 550px; }
-    .proceso-arrow { color: rgba(247,244,239,0.2); font-size: 1.4rem; justify-self: end; transition: all 0.5s; display: none; }
-    @media (min-width: 768px) { .proceso-arrow { display: block; } }
-    .proceso-item:hover .proceso-arrow { color: rgba(247,244,239,0.55); transform: translateX(6px); }
+    @media (min-width: 768px) {
+      .proceso-item { padding: 2.5rem 2rem; border-bottom: none; border-top: 1px solid rgba(247,244,239,0.1); }
+      .proceso-item:hover { border-top-color: var(--purple); }
+    }
+    .proceso-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 5.5vw, 7.5rem);
+      font-weight: 900; letter-spacing: -0.02em;
+      color: rgba(247,244,239,0.04); line-height: 0.9;
+      display: block; margin-bottom: -0.35em;
+      transition: color 0.5s;
+    }
+    .proceso-item:hover .proceso-num { color: rgba(123,63,242,0.1); }
+    .proceso-body h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.4rem, 2.2vw, 2rem);
+      font-weight: 400; color: var(--cream);
+      margin-bottom: 0.9rem; line-height: 1.2;
+      transition: color 0.4s;
+    }
+    .proceso-item:hover .proceso-body h3 { color: #fff; }
+    .proceso-body p { font-size: 0.82rem; color: rgba(247,244,239,0.38); line-height: 1.8; max-width: none; }
+    .proceso-arrow { display: none !important; }
 
     /* ── TESTIMONIALES ── */
     #testimoniales { background: var(--dark); }
@@ -529,15 +585,12 @@
     }
 
     /* ── Process block inside #nosotros ── */
-    .nosotros-process-block {
-      border-top: 1px solid rgba(247,244,239,0.1);
-      margin-top: 5rem; padding-top: 5rem;
-    }
+    .nosotros-process-block { border-top: 1px solid rgba(247,244,239,0.07); margin-top: 6rem; padding-top: 6rem; }
     .nosotros-process-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8rem, 3.5vw, 3.5rem);
-      font-weight: 300; color: var(--cream);
-      margin-bottom: 3.5rem; line-height: 1.1;
+      font-size: clamp(2rem, 4vw, 5rem);
+      font-weight: 300; font-style: italic; color: var(--cream);
+      margin-bottom: 4rem; line-height: 1.05;
     }
 
     /* ── SECTION TRANSITIONS ── */
