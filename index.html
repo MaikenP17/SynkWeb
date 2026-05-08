@@ -262,6 +262,7 @@
         radial-gradient(ellipse 60% 45% at 22% 52%, rgba(123,63,242,0.05) 0%, transparent 70%),
         linear-gradient(180deg, #0D0D0D 0%, #0F0A1A 40%, #0D0D0D 100%);
       color: var(--cream);
+      overflow: visible;
     }
     #nosotros .section-label-line { background: rgba(247,244,239,0.22); }
     #nosotros .section-label-text { color: rgba(247,244,239,0.35); }
@@ -540,11 +541,20 @@
     }
 
     /* ── SECTION TRANSITIONS ── */
-    /* Proyectos → Nosotros: no overlay on the cards.
-       A box-shadow cast upward from nosotros creates a depth cue at the join
-       without touching the reel area. */
-    #nosotros {
-      box-shadow: 0 -32px 56px -4px rgba(0,0,0,0.7);
+    /* Proyectos → Nosotros: gradient fade paints over the bottom of the reel cards */
+    #nosotros::before {
+      content: '';
+      position: absolute;
+      top: -130px; left: 0; right: 0;
+      height: 180px;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(13,13,13,0.55) 45%,
+        #0D0D0D 100%
+      );
+      pointer-events: none;
+      z-index: 10;
     }
     /* Nosotros → Contacto: short dark-to-dark edge blend */
     #nosotros::after {
