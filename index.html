@@ -5,9 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SYNK CREATIVE — Estudio de Diseño y Branding</title>
   <meta name="description" content="Sincronizamos tus ideas con nuestra creatividad. Estudio de diseño y branding especializado en identidad visual y estrategia de marca.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="SYNK CREATIVE Studio">
+  <meta name="theme-color" content="#7B3FF2">
+  <link rel="canonical" href="https://synkcreative.com/">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="SYNK CREATIVE">
+  <meta property="og:title" content="SYNK CREATIVE — Estudio de Diseño y Branding">
+  <meta property="og:description" content="Sincronizamos tus ideas con nuestra creatividad. Estudio especializado en branding, identidad visual, diseño web y producción audiovisual.">
+  <meta property="og:image" content="https://synkcreative.com/Medios/Images/UFC.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://synkcreative.com/">
+  <meta property="og:locale" content="es_ES">
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SYNK CREATIVE — Estudio de Diseño y Branding">
+  <meta name="twitter:description" content="Sincronizamos tus ideas con nuestra creatividad. Branding, identidad visual, diseño web y producción audiovisual.">
+  <meta name="twitter:image" content="https://synkcreative.com/Medios/Images/UFC.png">
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SYNK CREATIVE",
+    "url": "https://synkcreative.com",
+    "logo": "https://synkcreative.com/favicon.svg",
+    "description": "Estudio creativo especializado en branding, identidad visual, diseño web y producción audiovisual.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "synkcreative@gmail.com"
+    },
+    "sameAs": []
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
@@ -17,6 +56,12 @@
       --purple: #7B3FF2;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .form-status { margin-top: 1.2rem; font-size: 0.85rem; letter-spacing: 0.05em; display: none; }
+    .form-status.success { color: #7B3FF2; display: block; }
+    .form-status.error { color: #e55; display: block; }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+    .form-input.invalid, .form-textarea.invalid { border-color: #e55 !important; }
     ::selection { background: rgba(139, 92, 246, 0.38); color: inherit; }
     ::-moz-selection { background: rgba(139, 92, 246, 0.38); color: inherit; }
     html { scroll-behavior: smooth; }
@@ -654,7 +699,7 @@
 </div>
 
 <!-- NAV -->
-<nav id="navbar">
+<nav id="navbar" aria-label="Navegación principal">
   <a href="#inicio" class="nav-logo">SYNK</a>
   <ul class="nav-links">
     <li><a href="#servicios">Servicios</a></li>
@@ -669,7 +714,8 @@
 </nav>
 
 <!-- HERO -->
-<section id="inicio">
+<section id="inicio" aria-label="Inicio">
+  <h1 class="sr-only">SYNK CREATIVE — Estudio de Branding, Diseño Web y Producción Audiovisual</h1>
   <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
     <source src="Medios/Videos/vid%20pri.mp4" type="video/mp4">
   </video>
@@ -688,8 +734,9 @@
   </div>
 </section>
 
+<main id="contenido-principal">
 <!-- SERVICIOS -->
-<section id="servicios" class="section-pad">
+<section id="servicios" class="section-pad" aria-label="Nuestros servicios">
   <div class="container">
     <div class="section-label">
       <span class="section-label-line" style="background:rgba(247,244,239,0.3)"></span>
@@ -742,7 +789,7 @@
 </section>
 
 <!-- PROYECTOS -->
-<section id="proyectos">
+<section id="proyectos" aria-label="Proyectos recientes">
   <div class="reel-header">
     <div class="reel-label">
       <span class="reel-label-line"></span>
@@ -752,27 +799,27 @@
   <div class="reel-diagonal-wrap">
   <div class="reel-track-wrap">
     <div class="reel-track" id="reelTrack">
-      <a href="#contacto" class="reel-card">
+      <a href="#contacto" class="reel-card" aria-label="Proyecto: Iron Noir — Sport Identity">
         <div class="reel-card-bg" style="background-image:url('Medios/Images/UFC.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
         <div class="reel-card-content"><span class="reel-card-cat">Sport Identity</span><h3 class="reel-card-title">Iron Noir</h3></div>
       </a>
-      <a href="#contacto" class="reel-card">
+      <a href="#contacto" class="reel-card" aria-label="Proyecto: Studio Noir — Fotografía Editorial">
         <div class="reel-card-bg" style="background-image:url('Medios/Images/Fotog.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
         <div class="reel-card-content"><span class="reel-card-cat">Fotografía Editorial</span><h3 class="reel-card-title">Studio Noir</h3></div>
       </a>
-      <a href="#contacto" class="reel-card">
+      <a href="#contacto" class="reel-card" aria-label="Proyecto: Neon Room — Creator Branding">
         <div class="reel-card-bg" style="background-image:url('Medios/Images/Setu.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
         <div class="reel-card-content"><span class="reel-card-cat">Creator Branding</span><h3 class="reel-card-title">Neon Room</h3></div>
       </a>
-      <a href="#contacto" class="reel-card">
+      <a href="#contacto" class="reel-card" aria-label="Proyecto: Velvet Glow — Campaña Visual">
         <div class="reel-card-bg" style="background-image:url('Medios/Images/paula.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
         <div class="reel-card-content"><span class="reel-card-cat">Campaña Visual</span><h3 class="reel-card-title">Velvet Glow</h3></div>
       </a>
-      <a href="#contacto" class="reel-card">
+      <a href="#contacto" class="reel-card" aria-label="Proyecto: Crunch Ritual — Fotografía Gastronómica">
         <div class="reel-card-bg" style="background-image:url('Medios/Images/burger.png');background-size:cover;background-position:center"></div><div class="reel-noise"></div><div class="reel-card-overlay"></div>
         <span class="reel-card-arrow">↗</span>
         <div class="reel-card-content"><span class="reel-card-cat">Fotografía Gastronómica</span><h3 class="reel-card-title">Crunch Ritual</h3></div>
@@ -783,7 +830,7 @@
 </section>
 
 <!-- NOSOTROS -->
-<section id="nosotros" class="section-pad">
+<section id="nosotros" class="section-pad" aria-label="Sobre SYNK CREATIVE">
   <div class="container">
     <div class="section-label">
       <span class="section-label-line" style="background:rgba(247,244,239,0.22)"></span>
@@ -827,7 +874,7 @@
 </section>
 
 <!-- CONTACTO -->
-<section id="contacto" class="section-pad">
+<section id="contacto" class="section-pad" aria-label="Contacto">
   <div class="container">
     <div class="section-label">
       <span class="section-label-line" style="background:rgba(247,244,239,0.25)"></span>
@@ -843,20 +890,23 @@
         </div>
       </div>
       <div>
-        <form class="contact-form" onsubmit="return false;">
+        <form class="contact-form" id="contactForm" novalidate>
           <div class="form-row">
-            <div class="form-group"><label class="form-label">Nombre *</label><input type="text" class="form-input" placeholder="Tu nombre" required></div>
-            <div class="form-group"><label class="form-label">Email *</label><input type="email" class="form-input" placeholder="tu@email.com" required></div>
+            <div class="form-group"><label class="form-label" for="contact-nombre">Nombre *</label><input type="text" id="contact-nombre" name="from_name" class="form-input" placeholder="Tu nombre" required></div>
+            <div class="form-group"><label class="form-label" for="contact-email">Email *</label><input type="email" id="contact-email" name="from_email" class="form-input" placeholder="tu@email.com" required></div>
           </div>
-          <div class="form-group"><label class="form-label">Empresa</label><input type="text" class="form-input" placeholder="Nombre de tu empresa (opcional)"></div>
-          <div class="form-group"><label class="form-label">Mensaje *</label><textarea class="form-textarea" rows="5" placeholder="Cuéntanos sobre tu proyecto..." required></textarea></div>
-          <button type="submit" class="btn-submit" onclick="window.location='mailto:studiosynk9@gmail.com?subject=Proyecto SYNK&body='+encodeURIComponent(document.querySelector('.form-textarea').value)">Enviar Mensaje</button>
+          <div class="form-group"><label class="form-label" for="contact-empresa">Empresa</label><input type="text" id="contact-empresa" name="empresa" class="form-input" placeholder="Nombre de tu empresa (opcional)"></div>
+          <div class="form-group"><label class="form-label" for="contact-mensaje">Mensaje *</label><textarea id="contact-mensaje" name="mensaje" class="form-textarea" rows="5" placeholder="Cuéntanos sobre tu proyecto..." required></textarea></div>
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+          <button type="submit" class="btn-submit" id="submitBtn">Enviar Mensaje</button>
+          <p class="form-status" id="formStatus"></p>
         </form>
       </div>
     </div>
   </div>
 </section>
 
+</main>
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -1061,6 +1111,85 @@
       if (++n >= 5) { n = 0; window.location.href = 'synk-arcade.html'; return; }
       t = setTimeout(function () { n = 0; }, 2500);
     });
+  })();
+
+  /* ─── EMAILJS ───────────────────────────────────────── */
+  (function() {
+    emailjs.init('ovUMUQOfkMVhJqhyd');
+
+    const form      = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    if (!form) return;
+
+    let lastSent = 0;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Honeypot
+      if (form.querySelector('[name="_honey"]').value) return;
+
+      // Cooldown 60s
+      if (Date.now() - lastSent < 60000) {
+        showStatus('Por favor espera un momento antes de enviar otro mensaje.', 'error');
+        return;
+      }
+
+      // Validación
+      const nombre  = form.querySelector('[name="from_name"]');
+      const email   = form.querySelector('[name="from_email"]');
+      const mensaje = form.querySelector('[name="mensaje"]');
+      let valid = true;
+
+      [nombre, email, mensaje].forEach(function(el) {
+        if (!el.value.trim()) { el.classList.add('invalid'); valid = false; }
+        else el.classList.remove('invalid');
+      });
+
+      if (email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        email.classList.add('invalid'); valid = false;
+      }
+
+      if (!valid) { showStatus('Por favor completa todos los campos requeridos.', 'error'); return; }
+
+      // Enviar
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+      hideStatus();
+
+      emailjs.sendForm('service_xfm8xza', 'template_p84wf2c', form)
+        .then(function() {
+          lastSent = Date.now();
+          submitBtn.textContent = 'Enviado ✓';
+          showStatus('¡Mensaje enviado! Te respondemos pronto.', 'success');
+          form.reset();
+          setTimeout(function() {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Enviar Mensaje';
+            hideStatus();
+          }, 5000);
+        })
+        .catch(function() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar Mensaje';
+          showStatus('Ocurrió un error. Inténtalo de nuevo o escríbenos directamente.', 'error');
+        });
+    });
+
+    form.querySelectorAll('.form-input, .form-textarea').forEach(function(el) {
+      el.addEventListener('input', function() { el.classList.remove('invalid'); });
+    });
+
+    function showStatus(msg, type) {
+      var s = document.getElementById('formStatus');
+      if (!s) return;
+      s.textContent = msg;
+      s.className = 'form-status ' + type;
+    }
+    function hideStatus() {
+      var s = document.getElementById('formStatus');
+      if (s) { s.textContent = ''; s.className = 'form-status'; }
+    }
   })();
 </script>
 </body>

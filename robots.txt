@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /Medios/sounds/
+
+Sitemap: https://synkcreative.com/sitemap.xml
