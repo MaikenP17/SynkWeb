@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /Medios/sounds/
 
-Sitemap: https://synkcreative.com/sitemap.xml
+Sitemap: https://www.synkcreat.com/sitemap.xml
