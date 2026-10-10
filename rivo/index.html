@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0B1020">
+<title>Rivo · Menú digital</title>
+<meta name="description" content="Rivo: menú digital para restaurantes con pago verificado, panel de comandas y seguimiento del pedido. Por SYNK Creative, Cúcuta.">
+<link rel="canonical" href="https://www.synkcreat.com/rivo/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Rivo · por SYNK Creative">
+<meta property="og:title" content="Rivo · Menú digital">
+<meta property="og:description" content="Menú digital para restaurantes con pago verificado, panel de comandas y seguimiento del pedido.">
+<meta property="og:url" content="https://www.synkcreat.com/rivo/">
+<meta property="og:locale" content="es_CO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* Layout: una sola corriente vertical que alterna Noche y Hueso; la línea ondulada del logo cose cada sección con la siguiente. */
+:root{
+  --noche:#0B1020; --noche-2:#141B33; --noche-3:#1E2747;
+  --electrico:#2257FF; --electrico-claro:#6E8EFF;
+  --menta:#5CE1B8; --mango:#FFB020; --hueso:#F7F5F0; --hueso-2:#ECE8DE;
+  --tinta:#0B1020; --gris:#9AA2BC; --gris-2:#5A6176;
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:22px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--noche);color:var(--hueso);font-family:var(--body);font-size:17px;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:800;letter-spacing:-.02em}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0}
+.eyebrow{font-family:var(--display);font-weight:500;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--electrico-claro)}
+.lead{font-size:1.15rem;max-width:58ch;color:var(--gris)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:.95rem;text-decoration:none;border-radius:999px;padding:15px 26px;border:0;cursor:pointer;transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid var(--menta);outline-offset:3px}
+.btn-mango{background:var(--mango);color:var(--tinta)}
+.btn-line{background:transparent;color:var(--hueso);box-shadow:inset 0 0 0 2px var(--noche-3)}
+.wave{display:block;width:100%;height:28px}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(11,16,32,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--noche-3)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.nav img{height:34px;width:auto}
+.nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-weight:500;font-size:.95rem}
+.nav ul a{text-decoration:none;color:var(--gris)}
+.nav ul a:hover{color:var(--hueso)}
+.nav .btn{padding:10px 18px;font-size:.82rem}
+.nav .brand{display:flex;align-items:center;gap:14px;min-width:0}
+.nav .back{font-size:.78rem;font-weight:500;color:var(--gris);text-decoration:none;white-space:nowrap;padding-right:14px;border-right:1px solid var(--noche-3)}
+.nav .back:hover{color:var(--hueso)}
+
+/* HERO */
+.hero{padding-block:72px 40px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800;letter-spacing:-.035em}
+.hero h1 .e{color:var(--electrico)}
+.hero h1 .m{color:var(--mango)}
+.hero .copy{display:flex;flex-direction:column;gap:26px;min-width:0}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .note{font-size:.92rem;color:var(--gris)}
+.stage{position:relative;justify-self:center;width:min(100%,400px)}
+.phone{background:var(--hueso);color:var(--tinta);border-radius:34px;padding:18px;box-shadow:0 0 0 8px var(--noche-3),0 30px 80px rgba(34,87,255,.25);width:290px;max-width:100%;margin-left:auto}
+.phone .top{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--gris-2);margin-bottom:12px}
+.phone .rest{font-family:var(--display);font-weight:700;font-size:1rem}
+.order{background:#fff;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px;font-size:.88rem}
+.order .row{display:flex;justify-content:space-between;gap:10px}
+.order .nota{color:var(--gris-2);font-style:italic}
+.order .tot{border-top:1px dashed var(--hueso-2);padding-top:8px;font-weight:700;font-variant-numeric:tabular-nums}
+.paid{display:inline-flex;align-items:center;gap:6px;background:#E4FAF2;color:#0F6A4E;font-weight:700;font-size:.8rem;border-radius:999px;padding:5px 11px;margin:12px 0 10px}
+.track{display:flex;flex-direction:column;gap:9px;font-size:.85rem}
+.track li{list-style:none;display:flex;align-items:center;gap:10px;color:var(--gris-2)}
+.track ol{margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
+.dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--hueso-2);flex:none;display:grid;place-items:center}
+.track li.on{color:var(--tinta);font-weight:700}
+.track li.on .dot{background:var(--electrico);border-color:var(--electrico)}
+.track li.on .dot::after{content:"";width:6px;height:6px;border-radius:50%;background:#fff}
+.hero-char{position:absolute;left:-50px;bottom:-24px;width:150px;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35))}
+
+/* TICKER */
+.ticker{background:var(--electrico);color:var(--hueso);overflow:hidden;white-space:nowrap;font-family:var(--display);font-weight:700;font-size:1rem;padding-block:14px}
+.ticker .run{display:inline-flex;gap:38px;animation:run 32s linear infinite}
+.ticker span::after{content:"";display:inline-block;width:10px;height:7px;border-radius:50%;background:var(--mango);margin-left:38px;vertical-align:middle}
+@keyframes run{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding-block:90px}
+.light{background:var(--hueso);color:var(--tinta)}
+.light .lead{color:var(--gris-2)}
+.light .eyebrow{color:var(--electrico)}
+.head{display:flex;flex-direction:column;gap:16px;margin-bottom:48px}
+
+/* PROBLEMS */
+.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pain{background:#fff;border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px;border:1px solid var(--hueso-2)}
+.pain img{align-self:stretch;width:100%;height:200px;object-fit:contain;background:var(--noche);border-radius:16px;padding:18px}
+.pain .prob{color:#B23A3A;font-weight:700;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.pain .fix{background:var(--noche);color:var(--hueso);border-radius:14px;padding:14px 16px;font-size:.95rem}
+.pain .fix b{color:var(--menta)}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;counter-reset:s}
+.step{border-top:3px solid var(--electrico);padding-top:18px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.step::before{counter-increment:s;content:"0" counter(s);font-family:var(--display);font-weight:800;font-size:1.6rem;color:var(--electrico-claro)}
+.step p{color:var(--gris);font-size:.95rem}
+
+/* PANEL */
+.panel{display:grid;grid-template-columns:.8fr 1.2fr;gap:50px;align-items:center}
+.panel img{width:min(100%,330px);justify-self:center}
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.feat{background:var(--noche-2);border:1px solid var(--noche-3);border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:4px}
+.feat b{font-family:var(--display);font-size:.95rem}
+.feat span{color:var(--gris);font-size:.92rem}
+
+/* MONEY */
+.money{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.box{border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:10px}
+.box .big{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,6vw,4rem);line-height:1}
+.box.apps{background:#fff;border:1px solid var(--hueso-2)}
+.box.apps .big{color:#B23A3A}
+.box.rivo{background:var(--electrico);color:var(--hueso)}
+.box.rivo .big{color:var(--hueso)}
+.box small{opacity:.8}
+.fine{margin-top:14px;font-size:.82rem;color:var(--gris-2)}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.about .txt{display:flex;flex-direction:column;gap:18px}
+.about .txt p{color:var(--gris)}
+.about img{width:min(100%,300px);justify-self:center}
+.sign{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-size:.85rem;border:1px solid var(--noche-3);border-radius:999px;padding:6px 14px;color:var(--gris)}
+
+/* PLANS */
+.plans{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch;margin-top:150px}
+.plan{position:relative;background:#fff;border:1px solid var(--hueso-2);border-radius:var(--r);padding:34px 30px 30px;display:flex;flex-direction:column;gap:18px}
+.plan .sitter{position:absolute;top:-120px;right:24px;width:180px;height:180px;object-fit:contain;background:var(--noche);border-radius:50%;padding:20px;box-shadow:0 0 0 6px var(--hueso)}
+.plan.pro{background:var(--noche);color:var(--hueso);border-color:var(--noche)}
+.tag{align-self:flex-start;font-family:var(--display);font-weight:700;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;background:var(--mango);color:var(--tinta);border-radius:999px;padding:6px 12px}
+.plan h3{font-size:1.6rem;padding-right:150px}
+.plan .for{color:var(--gris-2)}
+.plan.pro .for{color:var(--gris)}
+.quote{display:flex;flex-direction:column;gap:8px}
+.price{font-family:var(--display);font-weight:800;font-size:1.35rem;line-height:1.2;text-wrap:balance}
+.price-note{font-size:.92rem;color:var(--gris-2)}
+.plan.pro .price-note{color:var(--gris)}
+.plan ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.plan li{display:flex;gap:10px;align-items:flex-start}
+.plan li::before{content:"";flex:none;width:18px;height:18px;margin-top:4px;border-radius:50%;background:var(--electrico) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4L18 8' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.plan.pro li::before{background-color:var(--menta)}
+.plan li.plus{font-weight:700}
+.plan .btn{align-self:flex-start;margin-top:auto}
+.plan.basic .btn{background:var(--noche);color:var(--hueso)}
+
+/* FAQ */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:820px}
+details{background:var(--noche-2);border:1px solid var(--noche-3);border-radius:16px;padding:18px 22px}
+summary{cursor:pointer;font-family:var(--display);font-weight:700;font-size:1rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--mango);font-size:1.3rem;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:12px;color:var(--gris)}
+
+/* CTA */
+.final{padding-block:90px 70px}
+.final .card{background:var(--electrico);border-radius:30px;padding:48px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center;overflow:hidden}
+.final h2{color:var(--hueso)}
+.final p{color:#DCE4FF;margin-top:14px;max-width:48ch}
+.final .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;align-items:center}
+.final img{width:min(100%,260px);aspect-ratio:1;object-fit:contain;justify-self:center;background:var(--noche);border-radius:50%;padding:26px}
+footer{border-top:1px solid var(--noche-3);padding-block:30px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;color:var(--gris);font-size:.9rem}
+footer img{height:28px;width:auto}
+footer span a{color:var(--hueso);text-decoration:none}
+footer span a:hover{text-decoration:underline}
+
+@media (max-width:900px){
+  .nav ul{display:none}
+  .hero .wrap,.panel,.about,.final .card{grid-template-columns:1fr}
+  .pains{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .feats{grid-template-columns:1fr}
+  .money,.plans{grid-template-columns:1fr}
+  .plans{gap:170px}
+  .phone{margin:0 auto}
+  .hero-char{position:static;width:110px;margin:20px auto 0}
+  .final .card{padding:32px 24px}
+}
+@media (max-width:480px){
+  .nav .wrap{gap:10px}
+  .nav .brand{gap:10px}
+  .nav .back{font-size:.72rem;padding-right:10px}
+  .nav .btn{padding:9px 14px;font-size:.74rem;white-space:nowrap}
+  .nav img{height:30px}
+}
+@media (max-width:480px){.steps{grid-template-columns:1fr} section{padding-block:64px} .plan .sitter{width:140px;height:140px;top:-95px} .plan h3{padding-right:0;margin-top:40px}}
+@media (prefers-reduced-motion:reduce){.ticker .run{animation:none}.btn{transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="brand">
+      <a class="back" href="/">← SYNK Creative</a>
+      <a href="#inicio" aria-label="Rivo, inicio"><img src="/assets/rivo/logo-rivo.png" alt="Rivo"></a>
+    </div>
+    <ul>
+      <li><a href="#que-hacemos">Qué hacemos</a></li>
+      <li><a href="#como-funciona">Cómo funciona</a></li>
+      <li><a href="#quienes-somos">Quiénes somos</a></li>
+      <li><a href="#planes">Planes</a></li>
+    </ul>
+    <a class="btn btn-mango" href="#contacto">Pide tu demo</a>
+  </div>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="wrap">
+    <div class="copy">
+      <span class="eyebrow">Menú digital para restaurantes · Cúcuta</span>
+      <h1>Tu menú.<br><span class="e">Tus pedidos.</span><br><span class="m">Tu plata.</span></h1>
+      <p class="lead">Una página con tu marca donde tu cliente elige, paga y sigue su pedido. A ti te llega directo a la cocina, sin chats, sin comprobantes falsos y sin pagarle comisión a una app.</p>
+      <div class="ctas">
+        <a class="btn btn-mango" href="#contacto">Verlo funcionando</a>
+        <a class="btn btn-line" href="#planes">Ver planes</a>
+      </div>
+      <p class="note">Te lo mostramos en tu local en menos de 10 minutos.</p>
+    </div>
+    <div class="stage" aria-label="Ejemplo de un pedido en el menú">
+      <div class="phone">
+        <div class="top"><span class="rest">Taquería del Barrio</span><span>Pedido #214</span></div>
+        <div class="order">
+          <div class="row"><span>3 tacos al pastor</span><span>$24.000</span></div>
+          <div class="nota">"Sin cebolla, por favor"</div>
+          <div class="row"><span>Limonada de coco</span><span>$9.000</span></div>
+          <div class="row"><span>Domicilio</span><span>$4.000</span></div>
+          <div class="row tot"><span>Total</span><span>$37.000</span></div>
+        </div>
+        <span class="paid">✓ Pago verificado</span>
+        <ol class="track" id="track">
+          <li class="on"><span class="dot"></span>Pago confirmado</li>
+          <li><span class="dot"></span>Preparando</li>
+          <li><span class="dot"></span>Listo</li>
+          <li><span class="dot"></span>En camino</li>
+        </ol>
+      </div>
+      <img class="hero-char" src="/assets/rivo/vaso-camina.png" alt="">
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="run">
+  <span>Sin comprobantes falsos</span><span>Sin chats colapsados</span><span>Sin "¿ya viene mi pedido?"</span><span>Sin comisión de apps</span><span>Con tu marca</span>
+  <span>Sin comprobantes falsos</span><span>Sin chats colapsados</span><span>Sin "¿ya viene mi pedido?"</span><span>Sin comisión de apps</span><span>Con tu marca</span>
+</div></div>
+
+<section class="light" id="que-hacemos">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Qué hacemos</span>
+      <h2>Resolvemos los tres problemas que tiene casi todo restaurante.</h2>
+      <p class="lead">Nos lo han dicho muchos dueños de restaurantes. Por eso construimos un menú que los ataca desde la raíz.</p>
+    </div>
+    <div class="pains">
+      <article class="pain">
+        <img src="/assets/rivo/recibo-camina.png" alt="">
+        <span class="prob">Comprobantes falsos</span>
+        <h3>Despachaste el pedido y la plata nunca llegó.</h3>
+        <p class="fix"><b>Con Rivo:</b> la comanda solo llega a tu cocina cuando la pasarela ya verificó el pago. No hay pantallazo que revisar.</p>
+      </article>
+      <article class="pain">
+        <img src="/assets/rivo/vaso-senala.png" alt="">
+        <span class="prob">WhatsApp colapsado</span>
+        <h3>Una persona contestando todos los chats en hora pico.</h3>
+        <p class="fix"><b>Con Rivo:</b> tu cliente elige, escribe sus notas y paga solo. Recibes más pedidos al tiempo sin contestar un mensaje.</p>
+      </article>
+      <article class="pain">
+        <img src="/assets/rivo/papas-camina.png" alt="">
+        <span class="prob">"¿Ya viene mi pedido?"</span>
+        <h3>Clientes preguntando una y otra vez dónde va su pedido.</h3>
+        <p class="fix"><b>Con Rivo:</b> tu cliente ve el seguimiento en tiempo real: preparando, listo, en camino. Y deja de escribirte.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>Así compra tu cliente.</h2>
+      <p class="lead">Todo pasa en un solo lugar. Tu cliente nunca se sale del menú, así que no tiene tiempo de arrepentirse ni de irse con otro restaurante.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Elige</h3><p>Ve tus productos con fotos, precios e ingredientes.</p></div>
+      <div class="step"><h3>Personaliza</h3><p>Agrega al carrito y escribe sus notas, como "sin cebolla".</p></div>
+      <div class="step"><h3>Paga</h3><p>Ahí mismo, con el medio de pago que prefiera.</p></div>
+      <div class="step"><h3>Llega a tu cocina</h3><p>El pedido entra a tu panel, ya pagado y listo para preparar.</p></div>
+      <div class="step"><h3>Lo sigue</h3><p>Ve en tiempo real cómo va su pedido hasta su puerta.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap panel">
+    <img src="/assets/rivo/caja-pulgar.png" alt="">
+    <div>
+      <div class="head" style="margin-bottom:28px">
+        <span class="eyebrow">Para el dueño</span>
+        <h2>Tu restaurante, en tu bolsillo.</h2>
+      </div>
+      <div class="feats">
+        <div class="feat"><b>Pedidos al segundo</b><span>Nombre, dirección, teléfono y nota de cada cliente.</span></div>
+        <div class="feat"><b>Tú controlas el menú</b><span>Cambias precios y marcas productos agotados desde el celular.</span></div>
+        <div class="feat"><b>Horarios automáticos</b><span>El menú abre y cierra solo, según tu horario.</span></div>
+        <div class="feat"><b>Ventas del día</b><span>Historial, lo más vendido y tus horas más fuertes.</span></div>
+        <div class="feat"><b>Dos accesos</b><span>El tuyo de administrador y el de tu encargado.</span></div>
+        <div class="feat"><b>Alertas y respaldo</b><span>Te avisa si nadie atiende un pedido y sigue recibiendo aunque se caiga el internet del local.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<svg class="wave" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:var(--noche)"><path d="M0 28 V16 C150 2 300 2 450 14 S750 26 900 12 S1100 4 1200 12 V28Z" fill="var(--hueso)"/></svg>
+<section class="light" style="padding-top:60px">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Lo que te ahorras</span>
+      <h2>La diferencia con las apps de pedidos es enorme.</h2>
+      <p class="lead">Las apps te traen clientes nuevos, pero se quedan con un pedazo grande de cada venta. Con tu propio menú, el cliente te paga directo a ti.</p>
+    </div>
+    <div class="money">
+      <div class="box apps">
+        <span class="eyebrow" style="color:var(--gris-2)">Apps de pedidos</span>
+        <span class="big">25–30%</span>
+        <p>de comisión en cada pedido, más IVA.</p>
+      </div>
+      <div class="box rivo">
+        <span class="eyebrow" style="color:#DCE4FF">Tu menú con Rivo</span>
+        <span class="big">Todo es tuyo</span>
+        <p>Solo pagas un pequeño porcentaje a la pasarela de pago, y únicamente cuando el pago sale bien.</p>
+      </div>
+    </div>
+    <p class="fine">Comisiones de apps según lo que reportan los restaurantes. Tarifas de la pasarela sujetas a cambios.</p>
+  </div>
+</section>
+<svg class="wave" viewBox="0 0 1200 28" preserveAspectRatio="none" aria-hidden="true" style="background:var(--hueso)"><path d="M0 28 V16 C150 2 300 2 450 14 S750 26 900 12 S1100 4 1200 12 V28Z" fill="var(--noche)"/></svg>
+
+<section id="quienes-somos" style="padding-top:60px">
+  <div class="wrap about">
+    <div class="txt">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Somos Rivo, por SYNK Creative.</h2>
+      <p>Somos un equipo creativo de Cúcuta. Después de pedir mucho a domicilio, vimos los mismos problemas una y otra vez: pagos que no llegaban, chats que nadie contestaba y clientes sin saber dónde iba su pedido.</p>
+      <p>Así nació Rivo, de "río": un flujo de pedidos que no se detiene. Diseñamos y programamos cada menú desde cero, con la marca de cada restaurante, y nos quedamos contigo después del lanzamiento.</p>
+      <div class="sign"><span class="chip">Hecho en Cúcuta</span><span class="chip">Diseño a tu medida</span><span class="chip">Capacitación incluida</span><span class="chip">Soporte cercano</span></div>
+    </div>
+    <img src="/assets/rivo/recibo-pulgar.png" alt="">
+  </div>
+</section>
+
+<section class="light" id="planes">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Planes</span>
+      <h2>Escoge cómo quieres vender.</h2>
+      <p class="lead">Los dos planes llevan tu marca, tus colores y tus productos. La diferencia es cómo te paga el cliente y cuánto controlas tú.</p>
+    </div>
+    <div class="plans">
+      <article class="plan basic">
+        <img class="sitter" src="/assets/rivo/caja-sentada.png" alt="">
+        <h3>Menú Básico</h3>
+        <p class="for">Para empezar a vender con una imagen profesional.</p>
+        <div class="quote">
+          <div class="price">Precio según tu restaurante</div>
+          <p class="price-note">Escríbenos y te contamos el valor y lo que incluye para tu negocio.</p>
+        </div>
+        <ul>
+          <li>Menú web con tu logo, tus colores y tus productos</li>
+          <li>Fotos, precios e ingredientes de cada plato</li>
+          <li>Carrito con notas del cliente</li>
+          <li>El pedido te llega armado a tu WhatsApp</li>
+          <li>Link para tus redes y código QR para tu local</li>
+        </ul>
+        <a class="btn" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Men%C3%BA%20B%C3%A1sico%20de%20Rivo" target="_blank" rel="noopener">Cotizar el Básico</a>
+      </article>
+      <article class="plan pro">
+        <img class="sitter" src="/assets/rivo/vaso-sentado.png" alt="">
+        <span class="tag">El más completo</span>
+        <h3>Menú con Pasarela de Pago</h3>
+        <p class="for">Para vender más, sin estafas y sin contestar chats.</p>
+        <div class="quote">
+          <div class="price">Precio según tu restaurante</div>
+          <p class="price-note">Escríbenos y te contamos el valor y lo que incluye para tu negocio.</p>
+        </div>
+        <ul>
+          <li class="plus">Todo lo del Menú Básico</li>
+          <li>Pasarela de pago: el pedido solo entra si el pago está verificado</li>
+          <li>Panel de comandas en tiempo real</li>
+          <li>Seguimiento del pedido para tu cliente</li>
+          <li>Precios, agotados y horarios desde tu celular</li>
+          <li>Historial, ventas del día y horas más concurridas</li>
+          <li>Alertas, dos accesos y respaldo si se cae el internet</li>
+          <li>Capacitación para ti y tu equipo</li>
+        </ul>
+        <a class="btn btn-mango" href="https://wa.me/57XXXXXXXXXX?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20Men%C3%BA%20con%20Pasarela%20de%20Pago%20de%20Rivo" target="_blank" rel="noopener">Cotizar el completo</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">Preguntas frecuentes</span>
+      <h2>Lo que más nos preguntan.</h2>
+    </div>
+    <div class="faq">
+      <details><summary>¿Tengo que salirme de las apps de domicilios?</summary><p>No. Las apps te sirven para que te conozcan clientes nuevos. Tu menú es para los que ya te conocen y te vuelven a pedir: en esos pedidos te ahorras la comisión.</p></details>
+      <details><summary>¿Y si mis clientes prefieren escribir por WhatsApp?</summary><p>El WhatsApp no desaparece. Tu respuesta automática les comparte el link del menú, y quien quiera escribir, puede seguir haciéndolo.</p></details>
+      <details><summary>¿A dónde llega la plata de las ventas?</summary><p>A tu propia cuenta de la pasarela de pago, a tu nombre. La plata de tus ventas nunca pasa por nosotros.</p></details>
+      <details><summary>¿Qué pasa si se cae el internet del local?</summary><p>La página sigue recibiendo pedidos, el panel te avisa, y puedes entrar desde un celular con datos para no perder ninguno.</p></details>
+      <details><summary>¿Cuánto tiempo tarda en estar listo?</summary><p>Depende de cuántos productos tenga tu carta. Te damos la fecha exacta en la primera reunión, después de ver tu menú.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="contacto">
+  <div class="wrap">
+    <div class="card">
+      <div>
+        <h2>¿Te lo mostramos funcionando?</h2>
+        <p>En menos de 10 minutos, en tu local, esta semana. Sin compromiso.</p>
+        <div class="ctas">
+          <a class="btn btn-mango" href="https://wa.me/57XXXXXXXXXX" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>        </div>
+      </div>
+      <img src="/assets/rivo/papas-saluda.png" alt="">
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="/assets/rivo/logo-rivo.png" alt="Rivo">
+    <span>Menú digital para restaurantes · por <a href="/">SYNK Creative</a> · Cúcuta, Colombia</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var items=document.querySelectorAll('#track li');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){items.forEach(function(li,i){if(i<3)li.classList.add('on')});return;}
+  var n=1;
+  setInterval(function(){
+    if(n>=items.length){items.forEach(function(li,i){li.classList.toggle('on',i===0)});n=1;return;}
+    items[n].classList.add('on');n++;
+  },1600);
+})();
+</script>
+</body>
+</html>
